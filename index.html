@@ -1,102 +1,128 @@
-
-<!DOCTYPE HTML>
-
+<!DOCTYPE html>
 <html>
 	<head>
-		<title>Sanford Homepage</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+		<title>Demi's blog</title>
+        <meta charset="utf-8">
+
+        
+        <style type = "text/css">
+			body
+		    {
+		    	background-color:#000000;
+                color:#FFFFFF;
+                
+		    }
+
+		    canvas
+		    {
+            	
+		    	width: 70%;
+		    	height: 100%;
+		    	background-color: #FFFFFF;
+                border: 20px solid #000000;
+                float: left
+            
+    
+		    }
+		    .right
+		    {
+		    	width: 70%;
+		    	width: 100%;
+		    	float: left;
+		    	display: right;
+
+
+		    }
+
+		    .color
+		    {
+		    	width: 20px;
+		    	height: 20px;
+		    	float: left;
+		    	margin-top: 20px;
+		    	margin-left: 10px;
+		    	cursor: pointer;/*滑鼠指標改變*/
+		    	border: 1px solid #FFFFFF;
+		    	border-radius: 50%;
+		    	text-align: center;
+
+		    }
+		    .color:hover
+		    {
+		    	transform: scale(1.5, 1.5);
+		    	box-shadow: 0px 0px 15px white;
+		    }
+		    #red
+		    {
+		    	background-color: red;
+		    }
+		    #blue
+		    {
+		    	background-color: blue;
+		    }
+		    #green
+		    {
+		    	background-color: green;
+		    }
+		    #purple
+		    {
+		    	background-color: purple;
+		    }
+		    #yellow
+		    {
+		    	background-color: yellow;
+		    }
+		    #orange
+		    {
+		    	background-color: orange;
+		    }
+		    #pink
+		    {
+		    	background-color: pink;
+		    }
+		    #black
+		    {
+		    	background-color: black;
+		    }
+
+		</style>
+
 
 		<script>
-			$("#top").click(function (e) { 
-     			e.preventDefault();
-    			$(document.body).animate({scrollTop: 0}, 800);
+        	window.onload = function{
+            	var cvs = document.getElementById("art");
+                var context = cvs.getContext("2d");
+            }
+        </script>
 
-			 });
-			
-		</script>
-	
-	</head> 
-		<body>
+	</head>
 
-		<!-- Header -->
-			<header id="header">
-				<a href="index.html" class="logo"><strong>Sanford</strong>'s Blog</a>
-			</header>
+	<!---->
+
+	<body>
+    	
 
 
-		<!-- Banner -->
-			<section id="banner">
-				<div class="inner">
-					<h1>Welcome! This is Sanford.</h1>
-					<h1>Coffee, tea, or ME?</h1>
-					<ul class="actions">
-						<li><a href="#one" class="button alt scrolly big">Follow me</a></li>
-					</ul>
-				</div>
-			</section>
+		<canvas id="cvs">
+			Your browser does not support the HTML5 canvas tag.
+        </canvas>
 
-		<!-- One -->
-			<article id="one" class="post style1">
-				<div class="image">
-					<img src="images/pic01.jpg" alt="" data-position="75% center" />
-				</div>
-				<div class="content">
-					<div class="inner">
-						<header>
-							<h2><a href="https://pin.it/ts2uxcij25kgbj">Alishan National Scenic Area (阿里山國家風景區) </a></h2>
-							<p class="info">December 10, 2018 <a href="#">@yi fan</a></p>
-						</header>
-						<p>Alishan is blessed with bountiful natural resources, such as sun rise views, a sea of clouds and old forests.</p>
-						<ul class="actions">
-							<li><a href="https://pin.it/ts2uxcij25kgbj" class="button alt">Read More</a></li>
-						</ul>
-					</div>
-					
-			</article>
-		  
-		<!-- Two -->
-			<article id="two" class="post invert style1 alt">
-				<div class="image">
-					<img src="images/pic02.jpg" alt="" data-position="10% center" />
-				</div>
-				<div class="content">
-					<div class="inner">
-						<header>
-							<h2><a href="https://pin.it/45ftckjssk7ryu">Jinmian Mountain (金面山親山步道) </a></h2>
-							<p class="info">August 6, 2017 <a href="#">@yi fan</a></p>
-						</header>
-						<p>Jinmian Mountain (金面山) which translates as "Golden Face Mountain" is a short hike in Taipei's Neihu (內湖) district.</p>
-						<ul class="actions">
-							<li><a href="https://pin.it/45ftckjssk7ryu" class="button alt">Read More</a></li>
-						</ul>
-					</div>
-					
-				</div>
-			</article>
+        
 
-			
-		<!-- Footer -->
+        <div id="red" class="color"></div>
+        <div id="blue" class="color"></div>
+        <div id="green" class="color"></div>
+        <div id="purple" class="color"></div>
+        <div id="yellow" class="color"></div>
+        <div id="orange" class="color"></div>
+        <div id="pink" class="color"></div>
+        <div id="black" class="color"></div>
 
-			<footer id="footer">
-				
-				<a href="#" id="top">Back to top</a>
-				
-				<ul class="icons">
-					<li><a href="https://pin.it/rqfzsnuzbtgbzc" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
-					<li><a href="https://www.facebook.com/hoohvw" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="https://www.instagram.com/yi__fan_/?hl=zh-tw" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-				</ul>
-			</footer>
+        <script type="text/javascript">
+        	
+        </script>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+
 
 	</body>
 </html>
