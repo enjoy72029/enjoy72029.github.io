@@ -4,41 +4,70 @@
 		<title>Wake up！大藝術家</title>
 		<meta charset="utf-8">
 
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="main.css" />
 		<link rel="stylesheet" href="assets/css/color.css">
-
-
+		<script type="text/javascript" src = "main.js"></script>
 	</head>
 
 	<!---->
 
-	<body>
+	<body onload="setting()">
     	
 		<div class="header"></div>
 
 
 		<div class="Sidebar">
-  			<canvas width="960px" height="720px" id="cvs"></canvas>
+  		<canvas width="820px" height="450px" id="cvs" onmouseup="up(event)" onmousedown="down(event)" onmousemove="mouseMove(event)"></canvas> 
 		</div>
 
 		<div class="body">
 		   <div id="buttons">
 		     <input type="button" id="reset" value="Reset"/>
-		     <div id='red' class="color"></div>
-		     <div id='blue' class="color"></div>
-		     <div id='green' class="color"></div>
-		     <div id='purple' class="color"></div>
-		     <div id='yellow' class="color"></div>
-		     <div id='orange' class="color"></div>
-		     <div id='pink' class="color"></div>
-		     <div id='black' class="color"></div>
-		     <div id='white' class="color"></div>
-   		   </div>
+		     <div id='red' class="color" onmousedown="red(event)"></div>
+		     <div id='blue' class="color" onmousedown="blue(event)"></div>
+		     <div id='green' class="color" onmousedown="green(event)"></div>
+		     <div id='purple' class="color" onmousedown="purple(event)"></div>
+		     <div id='yellow' class="color" onmousedown="yellow(event)"></div>
+		     <div id='orange' class="color" onmousedown="orange(event)"></div>
+		     <div id='pink' class="color" onmousedown="pink(event)"></div>
+		     <div id='black' class="color" onmousedown="black(event)"></div>
+		     <div id='white' class="color" onmousedown="white(event)"></div>
+   			</div>
+      
 		</div>
-
-
+   <li>
+    <div class="picker">
+      
+      Red <input type="range" min="0" max="255" step="1" id="colorpickerred" value="115">
+      Green <input type="range" min="0" max="255" step="1" id="colorpickergreen" value="10">
+      Blue <input type="range" min="0" max="255" step="1" id="colorpickerblue" value="162">
+      
+      <div id="display" onclick="rgbcolorchange()"></div>
+      
+    </div>
+    </li>
+     <p>
+    <label><input type="checkbox" class="symmetry" id="symmetry">Symmetry</label>
 
 		<script src="assets/js/draw.js"></script>
+    <script>
+      var input = document.querySelectorAll("input");
+      
+      for(var i = 0 ; i < input.length; i++)
+      {
+          input[i].addEventListener("input", function(){
+            var red = document.getElementById("colorpickerred").value,
+                green = document.getElementById("colorpickergreen").value,
+                blue = document.getElementById("colorpickerblue").value;
+            
+            var display = document.getElementById("display");
+            display.style.background = "rgb(" + red + ", " + green + ", " + blue +")";
+            
+          })
+      }
+      
+    </script>
+    
 
 	</body>
 
