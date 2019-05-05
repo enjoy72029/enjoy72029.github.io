@@ -3,6 +3,13 @@ lastx = 200 , lasty = 200;
 var cvs 
 var mouse_down = 0;
 
+function reset(event)
+{
+	ctx.beginPath();
+	ctx.clearRect(0,0,cvs.width,cvs.height);  
+	ctx.stroke();
+}
+
 function setting()
 {
 	var canvas1 = document.getElementById("cvs");
