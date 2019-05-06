@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Wake up！大藝術家</title>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="main.css" />
-		
-	</head>
-	<body>
-		<div class="header">
+  <head>
+    <title>Wake up！大藝術家</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="header">
 
     </div>
     <div class="topbar">
-      <input type="button" id="reset" value="Reset"/>
+      <input type="button" id="reset" value="Reset" onmousedown="reset(event)"/>
       <input type="button" id="download" value="Download" onclick="downloadimg()"/>
        
   </div>
       
+      
+  
     </div>
      
 
-		<div class="Sidebar">
-  			<canvas width="800px" height="600px" id="cvs"></canvas>
-		</div>
+    <div class="Sidebar">
+        <canvas width="820px" height="450px" id="cvs" onmouseup="up(event)" onmousedown="down(event)" onmousemove="mouseMove(event)"></canvas>
+    </div>
 
-		<div class="body">
-		   <div id="buttons">
-		     <div id='red' class="color"></div>
-		     <div id='blue' class="color"></div>
-		     <div id='green' class="color"></div>
-		     <div id='purple' class="color"></div>
-		     <div id='yellow' class="color"></div>
-		     <div id='orange' class="color"></div>
-		     <div id='pink' class="color"></div>
-		     <div id='black' class="color"></div>
-		     <div id='white' class="color"></div>
+    <div class="body">
+       <div id="buttons">
+         <div id='red' class="color" onmousedown="red(event)"></div>
+         <div id='blue' class="color" onmousedown="blue(event)"></div>
+         <div id='green' class="color" onmousedown="green(event)"></div>
+         <div id='purple' class="color" onmousedown="purple(event)"></div>
+         <div id='yellow' class="color" onmousedown="yellow(event)"></div>
+         <div id='orange' class="color" onmousedown="orange(event)"></div>
+         <div id='pink' class="color" onmousedown="pink(event)"></div>
+         <div id='black' class="color" onmousedown="black(event)"></div>
+         <div id='white' class="color" onmousedown="white(event)"></div>
          <div id="display" class="color" onclick="rgbcolorchange()"></div>
-   			</div>
+        </div>
       
-		</div>
+    </div>
     
     <!--<div class="picker">
  
@@ -64,20 +65,25 @@
     <div id="bluetext" style="display:none">Blue</div> <input type="range" min="0" max="255" step="1" id="colorpickerblue" value="162" style="display:none">
 
   </div>
-
+  
   
     <p style="color:black">blank</p>
     
+  
+  
+  
+  
     <form class="specialdraw">
      <div class="checkboschoose">
-    <label><input type="checkbox" class="symmetry" id="Hsymmetry">Horizontal symmetry</label>
-    <label><input type="checkbox" class="symmetry" id="Vsymmetry">Vertical symmetry</label>
-      </div>                                                   </form>
+        <label><input type="checkbox" class="symmetry" id="Hsymmetry">Horizontal symmetry</label>
+        <label><input type="checkbox" class="symmetry" id="Vsymmetry">Vertical symmetry</label>
+      </div>                                                   
+    </form>
       
-    <div id="testword" style="display:none">Hello!</div>
     
+   
 
-		<script src="main.js"></script>
+    <script src="main.js"></script>
     <script>
       var input = document.querySelectorAll("input");
       
@@ -97,6 +103,6 @@
     </script>
     
 
-	</body>
+  </body>
 
 </html>
