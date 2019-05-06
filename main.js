@@ -47,6 +47,38 @@ function up(event)
   mouse_down = 0;
 }
 
+function setpensize_one()
+{
+  ctx.lineWidth = 1;
+}
+function setpensize_two()
+{
+  ctx.lineWidth = 2;
+}
+function setpensize_three()
+{
+  ctx.lineWidth = 3;
+}
+function setpensize_five()
+{
+  ctx.lineWidth = 5;
+}
+
+function setpensize_ten()
+{
+  ctx.lineWidth = 10;
+}
+
+function setpensize_fifteen()
+{
+  ctx.lineWidth = 15;
+}
+
+function setpensize_twenty()
+{
+  ctx.lineWidth = 20;
+}
+
 function red(event)
 { 
   ctx.beginPath();
@@ -109,38 +141,6 @@ function white(event)
   ctx.beginPath();
   ctx.strokeStyle = " #FFFFFF";
   ctx.stroke();
-}
-
-function setpensize_one()
-{
-  ctx.lineWidth = 1;
-}
-function setpensize_two()
-{
-  ctx.lineWidth = 2;
-}
-function setpensize_three()
-{
-  ctx.lineWidth = 3;
-}
-function setpensize_five()
-{
-  ctx.lineWidth = 5;
-}
-
-function setpensize_ten()
-{
-  ctx.lineWidth = 10;
-}
-
-function setpensize_fifteen()
-{
-  ctx.lineWidth = 15;
-}
-
-function setpensize_twenty()
-{
-  ctx.lineWidth = 20;
 }
 
 function showcolorpicker()
