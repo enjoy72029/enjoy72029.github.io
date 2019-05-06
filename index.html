@@ -3,51 +3,79 @@
 	<head>
 		<title>Wake up！大藝術家</title>
 		<meta charset="utf-8">
-
-		<link rel="stylesheet" href="main.css" />
+		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/color.css">
-		<script type="text/javascript" src = "main.js"></script>
 	</head>
+	<body>
+		<div class="header">
 
-	<!---->
-
-	<body onload="setting()">
-    	
-		<div class="header"></div>
-
+    </div>
+    <div class="topbar">
+      <input type="button" id="reset" value="Reset"/>
+      <input type="button" id="download" value="Download" onclick="downloadimg()"/>
+       
+  </div>
+      
+    </div>
+     
 
 		<div class="Sidebar">
-  		<canvas width="820px" height="450px" id="cvs" onmouseup="up(event)" onmousedown="down(event)" onmousemove="mouseMove(event)"></canvas> 
+  			<canvas width="800px" height="600px" id="cvs" style="display:block;"></canvas>
 		</div>
 
 		<div class="body">
 		   <div id="buttons">
-		     <input type="button" id="reset" value="Reset" onmousedown="reset(event)"/>
-		     <div id='red' class="color" onmousedown="red(event)"></div>
-		     <div id='blue' class="color" onmousedown="blue(event)"></div>
-		     <div id='green' class="color" onmousedown="green(event)"></div>
-		     <div id='purple' class="color" onmousedown="purple(event)"></div>
-		     <div id='yellow' class="color" onmousedown="yellow(event)"></div>
-		     <div id='orange' class="color" onmousedown="orange(event)"></div>
-		     <div id='pink' class="color" onmousedown="pink(event)"></div>
-		     <div id='black' class="color" onmousedown="black(event)"></div>
-		     <div id='white' class="color" onmousedown="white(event)"></div>
+		     <div id='red' class="color"></div>
+		     <div id='blue' class="color"></div>
+		     <div id='green' class="color"></div>
+		     <div id='purple' class="color"></div>
+		     <div id='yellow' class="color"></div>
+		     <div id='orange' class="color"></div>
+		     <div id='pink' class="color"></div>
+		     <div id='black' class="color"></div>
+		     <div id='white' class="color"></div>
+         <div id="display" class="color" onclick="rgbcolorchange()"></div>
    			</div>
       
 		</div>
-   <li>
-    <div class="picker">
-      
+    
+    <!--<div class="picker">
+ 
       Red <input type="range" min="0" max="255" step="1" id="colorpickerred" value="115">
       Green <input type="range" min="0" max="255" step="1" id="colorpickergreen" value="10">
       Blue <input type="range" min="0" max="255" step="1" id="colorpickerblue" value="162">
-      
+  
       <div id="display" onclick="rgbcolorchange()"></div>
+  </div>-->
+    
+    
+    <!--<img id = "triangle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Triangle_illustration.svg/220px-Triangle_illustration.svg.png" alt="三角形“ onclick="draw_triangle()">-->
+    
+   <!-- <input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Triangle_illustration.svg/220px-Triangle_illustration.svg.png" class="shape" onclick="draw_triangle()">-->
+
+  
+  <input type='button' id='choose' value='Choose Your Color' onclick="showcolorpicker()"/>
+  
+  <div class="picker">
+          
+
+    <div id="redtext" style="display:none">Red</div> <input type="range" min="0" max="255" step="1" id="colorpickerred" value="115" style="display:none">
+    <div id="greentext" style="display:none">Green</div> <input type="range" min="0" max="255" step="1" id="colorpickergreen" value="10" style="display:none">
+    <div id="bluetext" style="display:none">Blue</div> <input type="range" min="0" max="255" step="1" id="colorpickerblue" value="162" style="display:none">
+
+  </div>
+
+  
+    <p style="color:black">blank</p>
+    
+    <form class="specialdraw">
+     <div class="checkboschoose">
+    <label><input type="checkbox" class="symmetry" id="Hsymmetry">Horizontal symmetry</label>
+    <label><input type="checkbox" class="symmetry" id="Vsymmetry">Vertical symmetry</label>
+      </div>                                                   </form>
       
-    </div>
-    </li>
-     <p>
-    <label><input type="checkbox" class="symmetry" id="symmetry">Symmetry</label>
+    <div id="testword" style="display:none">Hello!</div>
+    
 
 		<script src="assets/js/draw.js"></script>
     <script>
