@@ -112,3 +112,79 @@ function white(event)
 	ctx.strokeStyle = "	#FFFFFF";
 	ctx.stroke();
 }
+
+function showcolorpicker()
+{
+   var redtext = document.getElementById("redtext");
+   var pickerred = document.getElementById("colorpickerred");
+   var greentext = document.getElementById("greentext");
+   var pickergreen = document.getElementById("colorpickergreen");
+   var bluetext = document.getElementById("bluetext");
+
+   var pickerblue = document.getElementById("colorpickerblue");
+   if (pickerred.style.display === "none") {
+     pickerred.style.display = "block";
+     redtext.style.display = 'block';
+   } 
+   else {
+     pickerred.style.display = "none";
+     redtext.style.display = 'none';
+   }
+   if (pickergreen.style.display === "none") {
+     pickergreen.style.display = "block";
+     greentext.style.display = "block";
+   } 
+   else {
+     pickergreen.style.display = "none";
+     greentext.style.display = "none";
+
+   }
+   if (pickerblue.style.display === "none") {
+     pickerblue.style.display = "block";
+     bluetext.style.display = "block";
+   } 
+   else {
+     pickerblue.style.display = "none";
+     bluetext.style.display = "none";
+
+   }
+  
+}
+function rgbcolorchange()
+{
+  var red = document.getElementById("colorpickerred").value,
+      green = document.getElementById("colorpickergreen").value,
+      blue = document.getElementById("colorpickerblue").value;
+  
+  ctx.strokeStyle = "rgb(" + red + ", " + green + ", " + blue +")";
+}
+
+function symmetry() {
+  
+  var checkBox = document.getElementById("symmetry");
+  var text = document.getElementById("testword");
+  if (checkBox.checked == true){
+    for(var i = 0 ; i < 2 ; i++)
+      {
+          ctx.save();
+          ctx.translate(canvas.width()/2, canvas.height()/2);
+          ctx.rotate((Math.PI/180)*(360/2*i));
+          ctx.scale(-1, 1);
+          var img = new Image();
+          img.src = canvas.toDataURL("image/png");
+          ctx.drawImage(img, -canvas.width()/2, -canvas.height()/2);
+          ctx.restore();
+     }
+  } else {
+     text.style.display = "none";
+  }
+}
+
+function downloadimg()
+{
+  image = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
+  var link = document.createElement('a');
+  link.download = "Hello!大藝術家.jpg";
+  link.href = image;
+  link.click();
+}
