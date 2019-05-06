@@ -1,3 +1,4 @@
+
 body
 {
 	background-color:#000000;
@@ -7,19 +8,121 @@ body
 canvas
 {
 	border: 10px solid #000000;
-  background-color:#FFFFFF;       float: left;
-  cursor:url(https://i.imgur.com/uByeIia.png), pointer;
+  background-color:#FFFFFF;       
+  float: left;
+  cursor:url(https://i.imgur.com/kxk55ZQ.png), pointer;
 }
 
 .header
 {
 	width:100%;
-  	height:100px;
+  height:100px;
 	float:left;
-	padding:-30px;
+	padding:30px;
+}
+
+.topbar
+{
+  width:100%;
+  hieght:20px;
+  padding:7px;
+  background-colr:e3e3e3;
+}
+    
+#reset
+{
+  width: 100px; 
+	height: 40px;
+	border-width: 1px; 
+	border-radius: 3px;
+	background: transparent; /*背景透明*/
+  opacity: 0.4; /*透明度*/
+	cursor: pointer;
+	outline: none;
+	font-family: Microsoft YaHei; 
+	color: white; 
+	font-size: 17px; 
+}
+#reset:hover
+{
+  width: 100px;
+	height: 40px; 
+	border-width: 0px; 
+	border-radius: 3px;
+	background: #ffffff; 
+  opacity: 0.7;
+	cursor: pointer; 
+	outline: none; 
+	font-family: Microsoft YaHei;
+	color: black;
+	font-size: 17px; 
+
+}
+
+#choose
+{
+  margin:20px 20px 10px 0px;
+  width: 170px; 
+	height: 40px;
+	border-width: 1px; 
+	border-radius: 3px;
+	background: transparent; /*背景透明*/
+  opacity: 0.4; /*透明度*/
+	cursor: pointer;
+	outline: none;
+	font-family: Microsoft YaHei; 
+	color: white; 
+	font-size: 17px; 
+}
+
+#choose:hover
+{
+  margin:20px 20px 10px 0px;
+  width: 170px;
+	height: 40px; 
+	border-width: 0px; 
+	border-radius: 3px;
+	background: #ffffff; 
+  opacity: 0.7;
+	cursor: pointer; 
+	outline: none; 
+	font-family: Microsoft YaHei;
+	color: black;
+	font-size: 17px; 
+}
+
+#download
+{
+  margin:20px 20px 10px 0px;
+  width: 170px; 
+	height: 40px;
+	border-width: 1px; 
+	border-radius: 3px;
+	background: transparent; /*背景透明*/
+  opacity: 0.4; /*透明度*/
+	cursor: pointer;
+	outline: none;
+	font-family: Microsoft YaHei; 
+	color: white; 
+	font-size: 17px; 
+}
+
+#download:hover
+{
+  margin:20px 20px 10px 0px;
+  width: 170px;
+	height: 40px; 
+	border-width: 0px; 
+	border-radius: 3px;
+	background: #ffffff; 
+  opacity: 0.7;
+	cursor: pointer; 
+	outline: none; 
+	font-family: Microsoft YaHei;
+	color: black;
+	font-size: 17px;  
 }
             
-           
 .Sidebar
 {
 	width:70%;
@@ -37,6 +140,7 @@ canvas
 }
 .color
 {
+  
 	width: 20px;
 	height: 20px;
 	float: left;
@@ -89,23 +193,98 @@ canvas
 	background-color: white;
 }
 
-/*#choose
+/* color picker*/
+
+input[type="range"]
+{ 
+    margin:10px 20px 10px 20px;
+    -webkit-appearance: none;
+    position: relative;
+    overflow: hidden;
+    height: 10px; /*range 高度*/
+    width: 300px; /*range 寬度*/
+    cursor: pointer;
+    border-radius: 10px; /* 外框圓弧 */
+}
+
+::-webkit-slider-runnable-track
 {
-	background-color: white;    
-}*/
+    background: #ddd; /*不是範圍的顏色*/
+}
+::-webkit-slider-thumb
+{
+    -webkit-appearance: none;
+    width: 20px; 
+    height: 40px;
+
+    background: #fff; /*拉霸顏色*/
+    box-shadow: -100vw 0 0 100vw #454c49; /*範圍內顏色*/
+    border: 2px solid #999; /* 1 */
+}
+
+::-moz-range-track
+{
+    height: 40px;
+    background: #ddd;
+}
+
+::-moz-range-thumb
+{
+    background: #fff;
+    height: 40px;
+    width: 20px;
+    border: 3px solid #999;
+    border-radius: 0 !important;
+    box-shadow: -100vw 0 0 100vw dodgerblue;
+    box-sizing: border-box;
+}
+
+::-ms-fill-lower
+{ 
+    background: dodgerblue;
+}
+
+::-ms-thumb
+{ 
+    background: #fff;
+    border: 2px solid #999;
+    height: 40px;
+    width: 20px;
+    box-sizing: border-box;
+}
+
+::-ms-ticks-after
+{ 
+    display: none; 
+}
+
+::-ms-ticks-before
+{ 
+    display: none; 
+}
+
+::-ms-track
+{ 
+    background: #ddd;
+    color: transparent;
+    height: 40px;
+    border: none;
+}
+
+::-ms-tooltip
+{ 
+    display: block;
+}
 
 
 .picker
 {
-  position:aboslute;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
-  margin:auto;
-  /*width:px;*/
-  /*height:20px;*/
+  display:inline;
+ 
 }
+
+/* color picker*/
+
 
 #display
 {
@@ -125,19 +304,7 @@ canvas
 	transform: scale(1.5, 1.5);
 	box-shadow: 0px 0px 15px white;
 }
-input
-{
-  display:block;
-}
 
-/*img
-{
-  width:20px;
-  height:20px;
-  float:left;
-  display:inline;
-  padding:10 2 10 2;
-}*/
 .shape
 {
   width:20px;
@@ -145,13 +312,8 @@ input
   
 }
 
-
-
-/*---------------------------*/
-
-
 .symmetry
 {
   
-  display:block;
+  display:inline;
 }
