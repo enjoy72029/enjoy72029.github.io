@@ -235,8 +235,8 @@ function symmetry() {
 function downloadimg()
 {
   var link = document.getElementById("download");
-  link.download = "Hello!大藝術家.png";
-  link.href = canvas.toDataURL("Hello!大藝術家/png");
+  link.download = "image.png";
+  link.href = canvas.toDataURL("image/png");
   link.click();
 }
 
