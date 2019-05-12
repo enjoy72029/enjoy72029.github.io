@@ -50,39 +50,54 @@ function down(event)
 
 function up(event)
 {
+  ctx.beginPath();
   mouse_down = 0;
 }
 
 function setpensize_one()
 {
-  ctx.lineWidth = 1;  
+  ctx.beginPath();
+  ctx.lineWidth = 1; 
+  ctx.stroke(); 
 }
 function setpensize_two()
 {
+  ctx.beginPath();
   ctx.lineWidth = 2;
+  ctx.stroke();
 }
 function setpensize_three()
 {
+  ctx.beginPath();
   ctx.lineWidth = 3;
+  ctx.stroke();
 }
 function setpensize_five()
 {
+  ctx.beginPath();
   ctx.lineWidth = 5;
+  ctx.stroke();
 }
 
 function setpensize_ten()
 {
+  ctx.beginPath();
   ctx.lineWidth = 10;
+  ctx.stroke();
 }
 
 function setpensize_fifteen()
 {
+  ctx.beginPath();
   ctx.lineWidth = 15;
+  ctx.stroke();
 }
 
 function setpensize_twenty()
 {
+  ctx.beginPath();
   ctx.lineWidth = 20;
+  ctx.stroke();
 }
 
 function red(event)
@@ -186,8 +201,31 @@ function showcolorpicker()
    }
   
 }
-function rgbcolorchange(event)
+
+
+function changepensize(event)
 {
+  // var input = document.querySelectorAll("input");
+      
+  ctx.beginPath();
+  
+  var pensize = document.getElementById("pensize").value;
+  document.getElementById("change").innerHTML= pensize
+  ctx.lineWidth = pensize;
+  ctx.stroke();
+} 
+
+function displaychange(event)
+{
+   // var input = document.querySelectorAll("input");
+  
+   var red = document.getElementById("colorpickerred").value,
+                green = document.getElementById("colorpickergreen").value,
+                blue = document.getElementById("colorpickerblue").value;
+            
+            var display = document.getElementById("display");
+            display.style.background = "rgb(" + red + ", " + green + ", " + blue +")";
+
   ctx.beginPath();
   
   var red = document.getElementById("colorpickerred").value,
@@ -195,25 +233,7 @@ function rgbcolorchange(event)
       blue = document.getElementById("colorpickerblue").value;
   
   ctx.strokeStyle = "rgb(" + red + ", " + green + ", " + blue +")";
-    ctx.stroke();
-}
-
-function displaychange(event)
-{
-   var input = document.querySelectorAll("input");
-      
-      for(var i = 0 ; i < input.length; i++)
-      {
-          input[i].addEventListener("input", function(){
-            var red = document.getElementById("colorpickerred").value,
-                green = document.getElementById("colorpickergreen").value,
-                blue = document.getElementById("colorpickerblue").value;
-            
-            var display = document.getElementById("display");
-            display.style.background = "rgb(" + red + ", " + green + ", " + blue +")";
-            
-          })
-      }
+  ctx.stroke();
 }
 
 

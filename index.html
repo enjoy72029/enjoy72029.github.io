@@ -35,25 +35,9 @@
          <div id='pink' class="color" onmousedown="pink(event)"></div>
          <div id='black' class="color" onmousedown="black(event)"></div>
          <div id='white' class="color" onmousedown="white(event)"></div>
-         <div id="display" class="color" onclick="rgbcolorchange(event)"></div>
+         <div id='display' class="color"></div>
         </div>
     </div>
-
-
-    
-    <!--<div class="picker">
- 
-      Red <input type="range" min="0" max="255" step="1" id="colorpickerred" value="115">
-      Green <input type="range" min="0" max="255" step="1" id="colorpickergreen" value="10">
-      Blue <input type="range" min="0" max="255" step="1" id="colorpickerblue" value="162">
-  
-      <div id="display" onclick="rgbcolorchange()"></div>
-  </div>-->
-    
-    
-    <!--<img id = "triangle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Triangle_illustration.svg/220px-Triangle_illustration.svg.png" alt="三角形“ onclick="draw_triangle()">-->
-    
-   <!-- <input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Triangle_illustration.svg/220px-Triangle_illustration.svg.png" class="shape" onclick="draw_triangle()">-->
 
   
     <input type='button' id='choose' value='Choose Your Color' onclick="showcolorpicker()"/>
@@ -64,6 +48,8 @@
       <div id="bluetext" style="display:none">Blue</div> <input type="range" min="0" max="255" step="1" id="colorpickerblue" value="162" style="display:none">
     </div>
 
+
+
     <div class="body">
          <div id="buttonsize">
            <div id="one" class="size" onclick="setpensize_one()">1</div>
@@ -72,12 +58,15 @@
            <div id='five' class="size" onclick="setpensize_five()">5</div>
            <div id='ten' class="size" onclick="setpensize_ten()">10</div>
            <div id='fifteen' class="size" onclick="setpensize_fifteen()">15</div>
-           <div id='twenty' class="size" onclick="setpensize_twenty()">20</div>   
+           <div id='twenty' class="size" onclick="setpensize_twenty()">20</div>  
+          <div id='change' class="size">?</div>
         </div>
     </div>
     
     <div id="pensizetext">Pen Size</div>
-    <input id="pensize" type="range" min="1" max="30" value="1"/>
+    <input id="pensize" type="range" min="1" max="30" value="1" onclick="changepensize(event)"/>
+
+
 
     <form class="specialdraw">
      <div class="checkboschoose">
@@ -86,26 +75,6 @@
       </div>                                                   
     </form>
       
-    
-   
-
-    <!--<script src="main.js"></script>-->
-    <script>
-      var input = document.querySelectorAll("input");
-      
-      for(var i = 0 ; i < input.length; i++)
-      {
-          input[i].addEventListener("input", function(){
-            var red = document.getElementById("colorpickerred").value,
-                green = document.getElementById("colorpickergreen").value,
-                blue = document.getElementById("colorpickerblue").value;
-            
-            var display = document.getElementById("display");
-            display.style.background = "rgb(" + red + ", " + green + ", " + blue +")";
-            
-          })
-      }
-    </script>
 
   </body>
 
