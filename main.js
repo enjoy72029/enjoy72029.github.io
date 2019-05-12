@@ -49,49 +49,34 @@ function up(event)
 
 function setpensize_one()
 {
-  ctx.save();
-  ctx.lineWidth = 1;
-  ctx.restore();
-  
+  ctx.lineWidth = 1;  
 }
 function setpensize_two()
 {
-  ctx.save();
   ctx.lineWidth = 2;
-  ctx.restore();
 }
 function setpensize_three()
 {
-  ctx.save();
   ctx.lineWidth = 3;
-  ctx.restore();
 }
 function setpensize_five()
 {
-  ctx.save();
   ctx.lineWidth = 5;
-  ctx.restore();
 }
 
 function setpensize_ten()
 {
-  ctx.save();
   ctx.lineWidth = 10;
-  ctx.restore();
 }
 
 function setpensize_fifteen()
 {
-  ctx.save();
   ctx.lineWidth = 15;
-  ctx.restore();
 }
 
 function setpensize_twenty()
 {
-  ctx.save();
   ctx.lineWidth = 20;
-  ctx.restore();
 }
 
 function red(event)
