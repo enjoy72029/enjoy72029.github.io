@@ -1,7 +1,7 @@
-firstx = 100,firsty = 100;
-lastx = 200 , lasty = 200;
-var cvs 
-var mouse_down = 0;
+var canvas = document.getElementById('cvs');
+var ctx = canvas.getContext('2d');
+
+
 
 var p = document.getElementById("pensize");
 p.addEventListener("input", function() {
@@ -9,53 +9,11 @@ p.addEventListener("input", function() {
 }, false);
 
 
-function reset(event)
-{
-  ctx.beginPath();
-  ctx.clearRect(0,0,cvs.width,cvs.height);  
-  ctx.stroke();
-}
 
-function setting()
-{
-  var canvas1 = document.getElementById("cvs");
-  var ctx1 = canvas1.getContext("2d");
-  cvs = canvas1;
-  ctx = ctx1;
-}
-
-function getMousePos(cvs, event) {
-  var rect = cvs.getBoundingClientRect();
-  return {
-    x: event.clientX - rect.left,
-    y: event.clientY - rect.top
-  };
-}
-  
-function mouseMove(event) {
-  if(mouse_down == 1)
-  {
-    var mousePos = getMousePos(cvs, event);
-      ctx.lineTo(mousePos.x, mousePos.y);
-      ctx.stroke();
-  }
-}
-      
-function down(event)
-{
-  mouse_down = 1;
-  var mousePos = getMousePos(cvs, event);
-  ctx.moveTo(mousePos.x,mousePos.y);
-}
-
-function up(event)
-{
-  mouse_down = 0;
-}
 
 function setpensize_one()
 {
-  ctx.lineWidth = 1;  
+  ctx.lineWidth = 1;
 }
 function setpensize_two()
 {
@@ -83,70 +41,6 @@ function setpensize_fifteen()
 function setpensize_twenty()
 {
   ctx.lineWidth = 20;
-}
-
-function red(event)
-{ 
-  ctx.beginPath();
-  ctx.strokeStyle = "#FF0000";
-  ctx.stroke();
-  // canvas.freeDrawingBrush.color
-}
-
-function blue(event)
-{
-  ctx.beginPath();
-  ctx.strokeStyle = " #0000FF";
-  ctx.stroke();
-}
-
-function green(event)
-{
-  ctx.beginPath();
-  ctx.strokeStyle = " #008000";
-  ctx.stroke();
-}
-
-function purple(event)
-{
-  ctx.beginPath();
-  ctx.strokeStyle = " #8B00FF";
-  ctx.stroke();
-}
-
-function yellow(event)
-{
-  ctx.beginPath();
-  ctx.strokeStyle = "#FFFF00";
-  ctx.stroke();
-}
-
-function orange(event)
-{
-  ctx.beginPath();
-  ctx.strokeStyle = "#FFA500";
-  ctx.stroke();
-}
-
-function pink(event)
-{
-  ctx.beginPath();
-  ctx.strokeStyle = " #FFC0CB";
-  ctx.stroke();
-}
-
-function black(event)
-{
-  ctx.beginPath();
-  ctx.strokeStyle = " #000000";
-  ctx.stroke();
-}
-
-function white(event)
-{
-  ctx.beginPath();
-  ctx.strokeStyle = " #FFFFFF";
-  ctx.stroke();
 }
 
 function showcolorpicker()
@@ -186,37 +80,87 @@ function showcolorpicker()
    }
   
 }
-function rgbcolorchange(event)
+
+function getMousePos(canvas, evt)
 {
-  ctx.beginPath();
+  var rect = canvas.getBoundingClientRect();
+  return {
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
+  };
+}
+
+function mouseMove(evt)
+{
+  var Hsymmetry = document.getElementById("Hsymmetry");
+  var Vsymmetry = document.getElementById("Vsymmetry");
+  var mousePos = getMousePos(canvas, evt);
+  if(Hsymmetry.checked)
+  { 
+      ctx.moveTo( canvas.width/2 - (mousePos.x - canvas.width/2), mousePos.y);
+      ctx.lineTo(mousePos.x, mousePos.y);
+      ctx.stroke();
+  }
   
+  else
+  {
+      ctx.lineTo(mousePos.x, mousePos.y);
+      ctx.stroke();
+  }
+  
+
+}
+  
+
+canvas.addEventListener('mousedown', function(evt) {
+  var mousePos = getMousePos(canvas, evt);
+  ctx.beginPath();
+  ctx.moveTo(mousePos.x, mousePos.y);
+  evt.preventDefault();
+  canvas.addEventListener('mousemove', mouseMove, false);
+});
+
+canvas.addEventListener('mouseup', function() {
+  canvas.removeEventListener('mousemove', mouseMove, false);
+}, false);
+
+document.getElementById('reset').addEventListener('click', function() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}, false);
+
+var colors = ['red', 'blue', 'green', 'purple', 'yellow', 'orange', 'pink', 'black', 'white', 'ebebeb'];
+
+
+function listener(i) {
+  document.getElementById(colors[i]).addEventListener('click', function() {
+    ctx.strokeStyle = colors[i];
+  }, false);
+}
+
+function rgbcolorchange()
+{
   var red = document.getElementById("colorpickerred").value,
       green = document.getElementById("colorpickergreen").value,
       blue = document.getElementById("colorpickerblue").value;
   
   ctx.strokeStyle = "rgb(" + red + ", " + green + ", " + blue +")";
-    ctx.stroke();
 }
 
-function displaychange(event)
+function draw_triangle()
 {
-   var input = document.querySelectorAll("input");
-      
-      for(var i = 0 ; i < input.length; i++)
-      {
-          input[i].addEventListener("input", function(){
-            var red = document.getElementById("colorpickerred").value,
-                green = document.getElementById("colorpickergreen").value,
-                blue = document.getElementById("colorpickerblue").value;
-            
-            var display = document.getElementById("display");
-            display.style.background = "rgb(" + red + ", " + green + ", " + blue +")";
-            
-          })
-      }
+    ctx.beginPath();
+    ctx.moveTo(75,50);
+    ctx.lineTo(100,75);
+    ctx.lineTo(100,25);
+    ctx.fill();
 }
 
 
+for(var i = 0; i < colors.length; i++) {
+  listener(i);
+}
+
+//checkbox symmetry
 function symmetry() {
   
   var checkBox = document.getElementById("symmetry");
@@ -238,11 +182,16 @@ function symmetry() {
   }
 }
 
+
+
+
+//
+
 function downloadimg()
 {
   var link = document.getElementById("download");
-  link.download = "image.png";
-  link.href = canvas.toDataURL("image/png");
+  link.download = "Hello!大藝術家.png";
+  link.href = canvas.toDataURL("Hello!大藝術家/png");
   link.click();
 }
 
@@ -254,3 +203,4 @@ function setsize()
   can.width = width.value;
   can.height = height.value;
 }
+
