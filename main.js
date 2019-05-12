@@ -50,33 +50,40 @@ function up(event)
 function setpensize_one()
 {
   ctx.lineWidth = 1;
+  ctx.save();
 }
 function setpensize_two()
 {
   ctx.lineWidth = 2;
+  ctx.save();
 }
 function setpensize_three()
 {
   ctx.lineWidth = 3;
+  ctx.save();
 }
 function setpensize_five()
 {
   ctx.lineWidth = 5;
+  ctx.save();
 }
 
 function setpensize_ten()
 {
   ctx.lineWidth = 10;
+  ctx.save();
 }
 
 function setpensize_fifteen()
 {
   ctx.lineWidth = 15;
+  ctx.save();
 }
 
 function setpensize_twenty()
 {
   ctx.lineWidth = 20;
+  ctx.save();
 }
 
 function red(event)
