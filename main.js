@@ -47,6 +47,11 @@ function up(event)
   mouse_down = 0;
 }
 
+var p = document.getElementById("pensize");
+p.addEventListener("input", function() {
+  ctx.lineWidth = p.value;
+}, false);
+
 function setpensize_one()
 {
   ctx.lineWidth = 1;  
