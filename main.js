@@ -1,12 +1,32 @@
 firstx = 100,firsty = 100;
 lastx = 200 , lasty = 200;
+//var shapex = 100;
+//var shapey = 100;
 var cvs 
 var mouse_down = 0;
+var imgData;
 
 var p = document.getElementById("pensize");
 p.addEventListener("input", function() {
   ctx.lineWidth = p.value;
 }, false);
+
+function showpensize()
+{
+  var pensizetext = document.getElementById("pensizetext");
+  var pensize = document.getElementById("pensize"); 
+  if(pensizetext.style.display == "none")
+  {
+    pensizetext.style.display = "block";
+    pensize.style.display = "block";
+  }
+  else
+  {
+    pensizetext.style.display = "none";
+    pensize.style.display = "none";
+  }
+}
+
 
 
 function reset(event)
@@ -23,6 +43,8 @@ function setting()
   cvs = canvas1;
   ctx = ctx1;
 }
+
+
 
 function getMousePos(cvs, event) {
   var rect = cvs.getBoundingClientRect();
@@ -53,6 +75,8 @@ function up(event)
   ctx.beginPath();
   mouse_down = 0;
 }
+
+canvas.addEventListener('keydown', doKeyDown, true);
 
 function setpensize_one()
 {
@@ -219,22 +243,24 @@ function displaychange(event)
 {
    // var input = document.querySelectorAll("input");
   
-   var red = document.getElementById("colorpickerred").value,
-                green = document.getElementById("colorpickergreen").value,
-                blue = document.getElementById("colorpickerblue").value;
+    var red = document.getElementById("colorpickerred").value,
+        green = document.getElementById("colorpickergreen").value,
+        blue = document.getElementById("colorpickerblue").value;
             
-            var display = document.getElementById("display");
-            display.style.background = "rgb(" + red + ", " + green + ", " + blue +")";
+    var display = document.getElementById("display");
+    display.style.background = "rgb(" + red + ", " + green + ", " + blue +")";
 
-  ctx.beginPath();
+    ctx.beginPath();
   
-  var red = document.getElementById("colorpickerred").value,
-      green = document.getElementById("colorpickergreen").value,
-      blue = document.getElementById("colorpickerblue").value;
+    var red = document.getElementById("colorpickerred").value,
+        green = document.getElementById("colorpickergreen").value,
+        blue = document.getElementById("colorpickerblue").value;
   
-  ctx.strokeStyle = "rgb(" + red + ", " + green + ", " + blue +")";
-  ctx.stroke();
+    ctx.strokeStyle = "rgb(" + red + ", " + green + ", " + blue +")";
+    ctx.stroke();
 }
+
+
 
 
 function symmetry() {
@@ -271,6 +297,24 @@ function setsize()
   var can = document.getElementById("cvs");
   var width = document.getElementById("setwidth");
   var height = document.getElementById("setheight");
-  can.width = width.value;
-  can.height = height.value;
+  if(width.value>=200 && height.value>=300)
+  {
+      can.width = width.value;
+      can.height = height.value;
+  }
+  else
+  {
+      if(width.value < 200 && height.value >=300)
+      {
+          alert("寬度太小！寬度應大於200！");
+      }
+      if(width.value >= 200 && height.value < 300)
+      {
+          alert("高度太小！高度應大於300！");
+      }
+      if(width.value <200 && height.value < 300)
+      {
+          alert("寬度及高度太小，寬度應大於200且高度應大於300！");
+      }
+  }
 }
