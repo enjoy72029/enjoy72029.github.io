@@ -6,6 +6,10 @@ var cvs
 var mouse_down = 0;
 var imgData;
 
+
+var previous_and_next_count = 0;
+var previous_and_next = new Array();
+
 var p = document.getElementById("pensize");
 p.addEventListener("input", function() {
   ctx.lineWidth = p.value;
@@ -34,6 +38,10 @@ function reset(event)
   ctx.beginPath();
   ctx.clearRect(0,0,cvs.width,cvs.height);  
   ctx.stroke();
+  previous_and_next.length = 0;
+  previous_and_next_count = 0
+  var imgtemp = ctx.getImageData(0, 0, canvas1.width, canvas1.height);
+  previous_and_next.push(imgtemp);
 }
 
 function setting()
@@ -42,6 +50,11 @@ function setting()
   var ctx1 = canvas1.getContext("2d");
   cvs = canvas1;
   ctx = ctx1;
+
+  var imgtemp = ctx.getImageData(0, 0, canvas1.width, canvas1.height);
+  previous_and_next.push(imgtemp);
+  //alert("test");
+  //previous_and_next_count++;
 }
 
 
@@ -74,6 +87,39 @@ function up(event)
 {
   ctx.beginPath();
   mouse_down = 0;
+  
+  imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  previous_and_next.push(imgData);
+  previous_and_next_count++;
+  //alert(previous_and_next.length);
+}
+
+function previous()
+{
+  
+  if(previous_and_next_count <= 0)
+  {
+    alert("沒有上一步了！")
+  }
+  else
+  {
+    previous_and_next_count--;
+    ctx.putImageData(previous_and_next[previous_and_next_count], 0, 0)
+  }
+  
+}
+function next()
+{
+  if(previous_and_next_count > previous_and_next.length-2)
+  {
+    alert("沒有下一步了！")
+  }
+  else
+  {
+    previous_and_next_count++;
+    ctx.putImageData(previous_and_next[previous_and_next_count], 0, 0)
+  }
+  
 }
 
 canvas.addEventListener('keydown', doKeyDown, true);
