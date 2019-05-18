@@ -33,15 +33,19 @@ function showpensize()
 
 
 
-function reset(event)
+function reset()
 {
-  ctx.beginPath();
+
+
+  //ctx.beginPath();
   ctx.clearRect(0,0,cvs.width,cvs.height);  
-  ctx.stroke();
-  previous_and_next.length = 0;
-  previous_and_next_count = 0
-  var imgtemp = ctx.getImageData(0, 0, canvas1.width, canvas1.height);
+  //ctx.stroke();
+  previous_and_next_count = 0;
+  previous_and_next.splice(0,previous_and_next.length);
+  var imgtemp = ctx.getImageData(0, 0, canvas.width, canvas.height);
   previous_and_next.push(imgtemp);
+
+
 }
 
 function setting()
