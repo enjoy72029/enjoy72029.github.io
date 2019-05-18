@@ -220,6 +220,71 @@ canvas
 	color: black;
 	font-size: 17px;  
 }
+
+#previous
+{
+  	/*margin:20px 20px 10px 0px;*/
+  	width: 80px; 
+	height: 40px;
+	border-width: 1px; 
+	border-radius: 3px;
+	background: transparent; /*背景透明*/
+  	opacity: 0.4; /*透明度*/
+	cursor: pointer;
+	outline: none;
+	font-family: Microsoft YaHei; 
+	color: white; 
+	font-size: 17px; 
+}
+
+#previous:hover
+{
+  	/*margin:20px 20px 10px 0px;*/
+  	width: 80px;
+	height: 40px; 
+	border-width: 0px; 
+	border-radius: 3px;
+	background: #ffffff; 
+  	opacity: 0.7;
+	cursor: pointer; 
+	outline: none; 
+	font-family: Microsoft YaHei;
+	color: black;
+	font-size: 17px;  
+}
+
+
+#next
+{
+  	/*margin:20px 20px 10px 0px;*/
+  	width: 80px; 
+	height: 40px;
+	border-width: 1px; 
+	border-radius: 3px;
+	background: transparent; /*背景透明*/
+  	opacity: 0.4; /*透明度*/
+	cursor: pointer;
+	outline: none;
+	font-family: Microsoft YaHei; 
+	color: white; 
+	font-size: 17px; 
+}
+
+#next:hover
+{
+  	/*margin:20px 20px 10px 0px;*/
+  	width: 80px;
+	height: 40px; 
+	border-width: 0px; 
+	border-radius: 3px;
+	background: #ffffff; 
+  	opacity: 0.7;
+	cursor: pointer; 
+	outline: none; 
+	font-family: Microsoft YaHei;
+	color: black;
+	font-size: 17px;  
+}
             
 .Sidebar
 {
