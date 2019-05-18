@@ -4,7 +4,7 @@
     <title>Wake up！大藝術家</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="main.css" />
-    <script type="text/javascript" src = "main.js"></script>
+    <script type="text/javascript" src="main.js"></script>
   </head>
 
   <body onload="setting()">
@@ -12,11 +12,17 @@
 
     <div class="topbar">
       <input type="button" id="reset" value="Reset" onmousedown="reset(event)"/>
+
+      <input type="button" id="previous" value="上一步" onclick="previous()"/>
+      <input type="button" id="next" value="下一步" onclick="next()"/>
+
       <input type="button" id="download2" value="Download" onclick="downloadimg()"/>
       <a id="download"></a>
       <labe style="color:#e3e3e3;">Width：<input type="text" id="setwidth"/></label>
       <labe style="color:#e3e3e3;">Height：<input type="text" id="setheight"/></label>
       <input type="button" id="setsize" value="Set Canvas Size" onclick="setsize()"/>
+
+      
 
       <form name="dowhatForm"> 
         <input type="checkbox" id="checkdraw" name="dowhatGroup" value="1" checked="" onclick="dowhat(this)">Draw Now
@@ -50,7 +56,7 @@
   
     <input type='button' id='choose' value='Choose Your Color' onclick="showcolorpicker()"/>
     
-    <div class="picker" onclick="displaychange(event)">  
+    <div class="picker" oninput="displaychange()" onchange="displaychange()">  
       <div id="redtext" style="display:none">Red</div> <input type="range" min="0" max="255" step="1" id="colorpickerred" value="115" style="display:none">
       <div id="greentext" style="display:none">Green</div> <input type="range" min="0" max="255" step="1" id="colorpickergreen" value="10" style="display:none">
       <div id="bluetext" style="display:none">Blue</div> <input type="range" min="0" max="255" step="1" id="colorpickerblue" value="162" style="display:none">
@@ -82,26 +88,37 @@
     <input type="image" src="https://i.imgur.com/BFYaz6O.png" style="width: 375px;height: 10px">
 
     <div class="body">
-      <input type="image" src="https://i.imgur.com/1dsWaW0.png" class="shape" id="triangle" onclick="draw_triangle()">
+      <!--<input type="image" src="https://i.imgur.com/1dsWaW0.png" class="shape" id="triangle" onclick="draw_triangle()">
+      <input type="image" src="https://i.imgur.com/OWnELzY.png" class="shape" id="heart" onclick="draw_heart()">
+      
+      <input type="image" src="https://i.imgur.com/pIij7ub.png" class="shape" id="star" onclick="draw_star()">-->
       <input type="image" src="https://i.imgur.com/qYahEu7.png" class="shape" id="rectangle" onclick="draw_rectangle()">
       <image type="image" src="https://i.imgur.com/U3dWlOM.png" class="shape" id="circle" onclick="draw_circle()">
-      <input type="image" src="https://i.imgur.com/OWnELzY.png" class="shape" id="heart" onclick="draw_heart()">
       <input type="image" src="https://i.imgur.com/MX650uE.png" class="shape" id="squre" onclick="draw_squre()">
-      <input type="image" src="https://i.imgur.com/pIij7ub.png" class="shape" id="star" onclick="draw_star()">
+      
     </div>
 
-      <!--<div id="shapesizetext" style="display: none;">Shape Size</div>-->
+      
+        <!--rectangle-->
         <div id="rectanglewidthtext" style="display: none;">Rectangle Width = <span id="widthnum"></span></div>
         <input id="shapewidth" type="range" min="1" max="300" value="100" style="display:none;" oninput="show_change_shape_size()" onchange="show_change_shape_size()" />
 
         <div id ="rectangleheighttext" style="display: none;">Rectangle Height = <span id="heightnum"></span></div>
         <input id="shapeheight" type="range" min="1" max="900" value="300" style="display:none;" oninput="show_change_shape_size()" onchange="show_change_shape_size()"/>
 
+
+        <!--circle-->
         <div id ="circlelongtext" style="display: none;">Circle Semi-major = <span id="longnum"></span></div>
         <input id="circlelong" type="range" min="1" max="900" value="75" style="display:none;" oninput="show_change_shape_size()" onchange="show_change_shape_size()"/>
 
         <div id ="circleshorttext" style="display: none;">Circle Semi-minor axes = <span id="shortnum"></span></div>
         <input id="circleshort" type="range" min="1" max="900" value="75" style="display:none;" oninput="show_change_shape_size()" onchange="show_change_shape_size()"/>
+
+
+        <!--squre-->
+        <div id ="squresidetext" style="display: none;">Squre Side Length = <span id="sidenum"></span></div>
+        <input id="squreside" type="range" min="1" max="500" value="100" style="display:none;" oninput="show_change_shape_size()" onchange="show_change_shape_size()"/>
+
 
 
 
@@ -121,34 +138,38 @@
     <SCRIPT>
     var canvas = document.getElementById("cvs");
     canvas.addEventListener('keydown', doKeyDown, true);
-
     ctx = canvas.getContext("2d");
     var whatshape;
-
+    //rectangle
     var originalwidth = 100;
     var originalheight = 300;
     var newwidth = 100;
     var newheight = 300;
-
+    //circle
     var original_semiminor = 75; //半長軸
     var original_semiminor_axes =75; //半短軸
     var new_semiminor = 75;
     var new_semiminor_axes = 75;
+    //squre
+    var original_squrewidth = 100;
+    var original_squreheight = 100;
+    var new_squrewidth = 100;
+    var new_squreheight = 100;
 
 
     var widthnum = document.getElementById("widthnum");
     var heightnum = document.getElementById("heightnum");
     widthnum.innerHTML = 100;
     heightnum.innerHTML = 300;
-
-
     var longnum = document.getElementById("longnum");
     var shortnum = document.getElementById("shortnum");
     longnum.innerHTML = 75;
     shortnum.innerHTML = 75;
+    var sidenum = document.getElementById("sidenum");
+    sidenum.innerHTML = 100;
 
 
-    function draw_triangle()
+    /*function draw_triangle()
     {
         whatshape = 1;
         ctx.beginPath();
@@ -156,8 +177,7 @@
         ctx.lineTo(20,200);
         ctx.lineTo(130,200);
         ctx.fill();
-    }
-
+    }*/
     function draw_rectangle()
     {
         x = 100;
@@ -166,17 +186,12 @@
         originalheight = 300;
         newwidth = 100;
         newheight = 300;
-
         whatshape = 2;
-
         var red = document.getElementById("colorpickerred").value,
         green = document.getElementById("colorpickergreen").value,
         blue = document.getElementById("colorpickerblue").value;
-
         ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
         ctx.fillRect(x, y, originalwidth, originalheight);
-
-
         var changeshapewidth = document.getElementById("shapewidth");
         var changeshapeheight = document.getElementById("shapeheight");
         var rectanglewidthtext = document.getElementById("rectanglewidthtext");
@@ -191,20 +206,15 @@
         x = 100;
         y = 100;
         whatshape = 3;
-
         var red = document.getElementById("colorpickerred").value,
         green = document.getElementById("colorpickergreen").value,
         blue = document.getElementById("colorpickerblue").value;
-
         ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
-
         ctx.beginPath();
         ctx.ellipse(x, y, original_semiminor, original_semiminor_axes, 0, 0, 2 * Math.PI);
         ctx.closePath();
         ctx.stroke();
         ctx.fill();
-
-
         var changecirclelong = document.getElementById("circlelong");
         var changecircleshort = document.getElementById("circleshort");
         var circlelongtext = document.getElementById("circlelongtext");
@@ -214,8 +224,7 @@
         circlelongtext.style.display = "block";
         circleshorttext.style.display = "block";
     }
-
-    function draw_heart()
+    /*function draw_heart()
     {
         whatshape = 4;      
         ctx.beginPath();
@@ -228,21 +237,27 @@
         ctx.bezierCurveTo(85, 25, 75, 37, 75, 40);
         ctx.closePath();
         ctx.fill();
-    }
-
+    }*/
     function draw_squre()
     {
         whatshape = 5;
-        ctx.beginPath();
-        ctx.moveTo(10,10);
-        ctx.lineTo(10,80);
-        ctx.lineTo(80,80);
-        ctx.lineTo(80,10);
-        ctx.closePath();
-        ctx.fill();
+        x = 100;
+        y = 100;
+        original_squrewidth = 100;
+        original_squreheight = 100;
+        new_squrewidth = 100;
+        new_squreheight = 100;
+        var red = document.getElementById("colorpickerred").value,
+            green = document.getElementById("colorpickergreen").value,
+            blue = document.getElementById("colorpickerblue").value;
+        ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
+        ctx.fillRect(x, y, original_squrewidth, original_squreheight);
+        var changeside = document.getElementById("squreside");
+        var changesidetext = document.getElementById("squresidetext");
+        changeside.style.display = "block";
+        changesidetext.style.display = "block";
     }
-
-    function draw_star()
+    /*function draw_star()
     {
         whatshape = 6;
         ctx.beginPath();
@@ -259,14 +274,11 @@
         ctx.lineTo(108, 0);
         ctx.closePath();
         ctx.fill();
-    }
-
+    }*/
     var x = 100;
     var y = 100;
-
     var drawcheck = document.getElementById("checkdraw");
     var shapecheck = document.getElementById("checkshape");
-
     var img;
     
     function dowhat(elem)
@@ -277,23 +289,19 @@
                 group[i].checked = false;
             }
         }
-
         if(!drawcheck.checked)
         {
           img = ctx.getImageData(0, 0, canvas.width, canvas.height);
         }
     }
-
     function doKeyDown(e)
     {
       //====================
       //  THE W KEY
       //====================
-
       var red = document.getElementById("colorpickerred").value,
           green = document.getElementById("colorpickergreen").value,
           blue = document.getElementById("colorpickerblue").value;
-
       
       if (e.keyCode == 87)
       {
@@ -311,15 +319,19 @@
           y = y - 10;
           ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
           ctx.beginPath();
-          ctx.ellipse(x, y, 75, 75, 0, 0, 2 * Math.PI);
+          ctx.ellipse(x, y, new_semiminor, new_semiminor_axes, 0, 0, 2 * Math.PI);
           ctx.closePath();
           ctx.stroke();
           ctx.fill();
-
+        }
+        if(whatshape == 5)
+        {
+          y = y - 10;
+          ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
+          ctx.fillRect(x,y, new_squrewidth, new_squreheight);
         }
         
       }
-
       //====================
       //  THE S KEY
       //====================
@@ -338,15 +350,19 @@
           y = y + 10;
           ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
           ctx.beginPath();
-          ctx.ellipse(x, y, 75, 75, 0, 0, 2 * Math.PI);
+          ctx.ellipse(x, y, new_semiminor, new_semiminor_axes, 0, 0, 2 * Math.PI);
           ctx.closePath();
           ctx.stroke();
           ctx.fill();
-
+        }
+        if(whatshape == 5)
+        {
+          y = y + 10;
+          ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
+          ctx.fillRect(x,y, new_squrewidth, new_squreheight);
         }
         
       }
-
       //====================
       //  THE A KEY
       //====================
@@ -365,14 +381,19 @@
           x = x - 10;
           ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
           ctx.beginPath();
-          ctx.ellipse(x, y, 75, 75, 0, 0, 2 * Math.PI);
+          ctx.ellipse(x, y, new_semiminor, new_semiminor_axes, 0, 0, 2 * Math.PI);
           ctx.closePath();
           ctx.stroke();
           ctx.fill();
         }
+        if(whatshape == 5)
+        {
+          x = x - 10;
+          ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
+          ctx.fillRect(x,y, new_squrewidth, new_squreheight);
+        }
         
       }
-
       //====================
       //  THE D KEY
       //====================
@@ -391,11 +412,16 @@
           x = x + 10;
           ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
           ctx.beginPath();
-          ctx.ellipse(x, y, 75, 75, 0, 0, 2 * Math.PI);
+          ctx.ellipse(x, y, new_semiminor, new_semiminor_axes, 0, 0, 2 * Math.PI);
           ctx.closePath();
           ctx.stroke();
           ctx.fill();
-
+        }
+        if(whatshape == 5)
+        {
+          x = x + 10;
+          ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
+          ctx.fillRect(x,y, new_squrewidth, new_squreheight);
         }
         
       }
@@ -404,14 +430,12 @@
         
         img = ctx.getImageData(0, 0, canvas.width, canvas.height);
         alert("圖形已被儲存");
-
         if(whatshape == 2)
         {
             var changeshapewidth = document.getElementById("shapewidth");
             var changeshapeheight = document.getElementById("shapeheight");
             var rectanglewidthtext = document.getElementById("rectanglewidthtext");
             var rectangleheighttext = document.getElementById("rectangleheighttext");
-
             changeshapewidth.style.display = "none";
             changeshapeheight.style.display = "none";
             rectanglewidthtext.style.display = "none";
@@ -429,14 +453,20 @@
             circlelongtext.style.display = "none";
             circleshorttext.style.display = "none";
         }
+
+        if(whatshape == 5)
+        {
+            var squreside = document.getElementById("squreside");
+            var squresidetext = document.getElementById("squresidetext");
+            squreside.style.display = "none";
+            squresidetext.style.display = "none";
+        }
         
       }
     }
-
     function clearCanvas() {
       canvas.width = canvas.width;
     }
-
     function show_change_shape_size()
     {   
         
@@ -445,25 +475,20 @@
         if(whatshape == 2)
         {
           
-
           var changeshapewidth = document.getElementById("shapewidth");
           var changeshapeheight = document.getElementById("shapeheight");
           var widthnum = document.getElementById("widthnum");
           var heightnum = document.getElementById("heightnum");
           widthnum.innerHTML = changeshapewidth.value;
           heightnum.innerHTML = changeshapeheight.value;
-
           var red = document.getElementById("colorpickerred").value,
               green = document.getElementById("colorpickergreen").value,
               blue = document.getElementById("colorpickerblue").value;
-
       
           newwidth = changeshapewidth.value;
           newheight = changeshapeheight.value;
-
           ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
           ctx.fillRect(x,y,newwidth, newheight);
-
         }
         
         if(whatshape == 3)
@@ -474,35 +499,38 @@
           var shortnum = document.getElementById("shortnum");
           longnum.innerHTML = changecirclelong.value;
           shortnum.innerHTML = changecircleshort.value;
-
           var red = document.getElementById("colorpickerred").value,
               green = document.getElementById("colorpickergreen").value,
               blue = document.getElementById("colorpickerblue").value;
-
           new_semiminor = changecirclelong.value;
           new_semiminor_axes = changecircleshort.value;
-
           ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
           ctx.beginPath();
           ctx.ellipse(x, y, new_semiminor, new_semiminor_axes, 0, 0, 2 * Math.PI);
           ctx.closePath();
           ctx.stroke();
           ctx.fill();
+        }
 
+
+        if(whatshape == 5)
+        {
+          var changesqureside = document.getElementById("squreside");
+          var sidenum = document.getElementById("sidenum");
+          sidenum.innerHTML = changesqureside.value;
+        
+          var red = document.getElementById("colorpickerred").value,
+              green = document.getElementById("colorpickergreen").value,
+              blue = document.getElementById("colorpickerblue").value;
+      
+          new_squrewidth = changesqureside.value;
+          new_squreheight = changesqureside.value;
+          ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
+          ctx.fillRect(x,y,new_squrewidth, new_squrewidth);
         }
         
     }
-
-    function reset(event)
-    {
-      ctx.beginPath();
-      ctx.clearRect(0,0,cvs.width,cvs.height);  
-      ctx.stroke();
-      x = 100;
-      y = 100;
-      img = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    }
-
+    
   </SCRIPT>
       
 
