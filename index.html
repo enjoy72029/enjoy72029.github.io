@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="main.css" />
     <script type="text/javascript" src="main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro/dist/iro.min.js"></script>
   </head>
 
   <body onload="setting()">
@@ -16,6 +15,8 @@
 
       <input type="button" id="previous" value="上一步" onclick="previous()"/>
       <input type="button" id="next" value="下一步" onclick="next()"/>
+      <a   href="#" download="img.png" onclick="this.href=canvas.toDataURL();" >下載</a>
+
 
       <input type="button" id="download2" value="Download" onclick="downloadimg()"/>
       <a id="download"></a>
@@ -58,9 +59,11 @@
     <input type='button' id='choose' value='Choose Your Color' onclick="showcolorpicker()"/>
     
     <div class="picker" oninput="displaychange()" onchange="displaychange()">  
-      
+      <div id="redtext" style="display:none">Red</div> <input type="range" min="0" max="255" step="1" id="colorpickerred" value="115" style="display:none">
+      <div id="greentext" style="display:none">Green</div> <input type="range" min="0" max="255" step="1" id="colorpickergreen" value="10" style="display:none">
+      <div id="bluetext" style="display:none">Blue</div> <input type="range" min="0" max="255" step="1" id="colorpickerblue" value="162" style="display:none">
     </div>
-    <div id="color-picker-container"></div>
+
 
     <input type="image" src="https://i.imgur.com/BFYaz6O.png" style="width: 375px;height: 10px">
 
@@ -124,12 +127,16 @@
       <input type="image" src="https://i.imgur.com/BFYaz6O.png" style="width: 375px;height: 10px">
 
 
-
-    <form class="specialdraw">
-     <div class="checkboschoose">
-        <label><input type="checkbox" class="symmetry" id="Hsymmetry">Horizontal symmetry</label>
-        <label><input type="checkbox" class="symmetry" id="Vsymmetry">Vertical symmetry</label>
-      </div>                                                   
+    <form>
+      <label for="normal">Normal</label>
+      <input type="radio" name="sex" id="normal" checked  onclick="feat_n()" />
+      <br/>
+      <label for="Hsymmetry">Horizontal symmetry</label>
+      <input type="radio" name="sex" id="Hsymmetry"  onclick="feat_H()" />
+      <br />
+      <label for="Vsymmetry">Vertical symmetry</label>
+      <input type="radio" name="sex" id="Vsymmetry" onclick="feat_V()" />
+      <br /> 
     </form>
 
 

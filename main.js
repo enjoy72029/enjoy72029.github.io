@@ -1,11 +1,3 @@
-var colorPicker = new iro.ColorPicker('#color-picker-container',{
-     width: 250,
-     color: "#ffffff",
-     borderWidth: 2,
-     padding: 4,
-     //display: "none"
-   });
-
 firstx = 100,firsty = 100;
 lastx = 200 , lasty = 200;
 //var shapex = 100;
@@ -39,6 +31,8 @@ function showpensize()
   }
 }
 
+
+
 function reset()
 {
 
@@ -66,6 +60,8 @@ function setting()
   //alert("test");
   //previous_and_next_count++;
 }
+
+
 
 function getMousePos(cvs, event) {
   var rect = cvs.getBoundingClientRect();
@@ -244,16 +240,13 @@ function white(event)
 
 function showcolorpicker()
 {
-   var colorPicker = document.getElementById("color-picker-container");
-  
-   if (colorPicker.style.display === "none") {
-     colorPicker.style.display = "block";
-   } 
-   else {
-     colorPicker.style.display = "none";
-   }
-  
-  
+   var redtext = document.getElementById("redtext");
+   var pickerred = document.getElementById("colorpickerred");
+   var greentext = document.getElementById("greentext");
+   var pickergreen = document.getElementById("colorpickergreen");
+   var bluetext = document.getElementById("bluetext");
+
+   var pickerblue = document.getElementById("colorpickerblue");
    if (pickerred.style.display === "none") {
      pickerred.style.display = "block";
      redtext.style.display = 'block';
@@ -295,30 +288,6 @@ function changepensize(event)
   ctx.lineWidth = pensize;
   ctx.stroke();
 } 
-/*
-function onColorChange(color, changes) {
-  
-  var hex = colorPicker.color.hexString;
-  
-  // print the color's new hex value to the developer console
-  console.log(color.hexString);
-  // listen to a color picker's color:change event
-  colorPicker.on('color:change', onColorChange);
-
-  // later, if we want to stop listening to color:change...
-  // remove the color:change callback
-  colorPicker.off('color:change', onColorChange);
-  
-  ctx.strokeStyle = "hex";
-}*/
-
-colorPicker.on(["color:init", "color:change"], function(color){
-  ctx.beginPath();
-  ctx.strokeStyle = color.hexString;
-  ctx.stroke();
-});
-
-
 
 function displaychange(event)
 {
@@ -330,8 +299,14 @@ function displaychange(event)
             
     var display = document.getElementById("display");
     display.style.background = "rgb(" + red + ", " + green + ", " + blue +")";
+
+    ctx.beginPath();
   
-    //ctx.strokeStyle = "rgb(" + red + ", " + green + ", " + blue +")";
+    var red = document.getElementById("colorpickerred").value,
+        green = document.getElementById("colorpickergreen").value,
+        blue = document.getElementById("colorpickerblue").value;
+  
+    ctx.strokeStyle = "rgb(" + red + ", " + green + ", " + blue +")";
     ctx.stroke();
 }
 
