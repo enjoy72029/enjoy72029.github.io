@@ -15,11 +15,11 @@
 
       <input type="button" id="previous" value="上一步" onclick="previous()"/>
       <input type="button" id="next" value="下一步" onclick="next()"/>
-      <a   href="#" download="img.png" onclick="this.href=canvas.toDataURL();" >下載</a>
+      <!--<a href="#" download="img.png" onclick="this.href=canvas.toDataURL();" >下載</a>-->
 
 
       <input type="button" id="download2" value="Download" onclick="downloadimg()"/>
-      <a id="download"></a>
+      <a id="download" href="#" download="img.png" onclick="this.href=canvas.toDataURL();"></a>
       <labe style="color:#e3e3e3;">Width：<input type="text" id="setwidth"/></label>
       <labe style="color:#e3e3e3;">Height：<input type="text" id="setheight"/></label>
       <input type="button" id="setsize" value="Set Canvas Size" onclick="setsize()"/>
