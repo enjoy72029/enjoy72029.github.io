@@ -106,19 +106,29 @@ function mouseMove(event) {
     {
       ctx.lineTo(mousePos.x, mousePos.y);
       ctx.stroke();
+      var normal = document.getElementById("normal");
+      normal.play();
     }
 
     if(feat == 4 || feat == 5)
     {
       if(feat == 4)
+      {
         ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
+        var bubble = document.getElementById("bubble");
+        bubble.play();
+      }
       else if(feat == 5)
+      {
         ctx.rect(mousePos.x,mousePos.y,50,50);
-      // ctx.lineTo(mousePos.x, mousePos.y);
+        var rect = document.getElementById("rect");
+        rect.play();
+      }
       ctx.stroke();
       ctx.beginPath();
-
     }
+
+
     
      
   }
