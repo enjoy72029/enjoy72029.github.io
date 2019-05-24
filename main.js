@@ -300,14 +300,14 @@ function white(event)
 
 function showcolorpicker()
 {
-   var redtext = document.getElementById("redtext");
-   var pickerred = document.getElementById("colorpickerred");
-   var greentext = document.getElementById("greentext");
-   var pickergreen = document.getElementById("colorpickergreen");
-   var bluetext = document.getElementById("bluetext");
-
-   var pickerblue = document.getElementById("colorpickerblue");
-   if (pickerred.style.display === "none") {
+   //var redtext = document.getElementById("redtext");
+   //var pickerred = document.getElementById("colorpickerred");
+   //var greentext = document.getElementById("greentext");
+   //var pickergreen = document.getElementById("colorpickergreen");
+   //var bluetext = document.getElementById("bluetext");
+   //var pickerblue = document.getElementById("colorpickerblue");
+   var color_picker =  document.getElementById("color-picker");
+   /*if (pickerred.style.display === "none") {
      pickerred.style.display = "block";
      redtext.style.display = 'block';
    } 
@@ -331,6 +331,14 @@ function showcolorpicker()
    else {
      pickerblue.style.display = "none";
      bluetext.style.display = "none";
+   }*/
+   if (color_picker.style.display === "none") {
+     color_picker.style.display = "block";
+     color_picker.style.display = 'block';
+   }
+   else {
+     color_picker.style.display = "none";
+     color_picker.style.display = "none";
 
    }
   
@@ -349,7 +357,7 @@ function changepensize(event)
   ctx.stroke();
 } 
 
-function displaychange(event)
+/*function displaychange(event)
 {
    // var input = document.querySelectorAll("input");
   
@@ -369,7 +377,7 @@ function displaychange(event)
     ctx.strokeStyle = "rgb(" + red + ", " + green + ", " + blue +")";
     ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
     ctx.stroke();
-}
+}*/
 
 
 
