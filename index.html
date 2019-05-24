@@ -65,6 +65,9 @@
     </div>
 
 
+    <canvas id="color-picker" style="display: none;"></canvas>
+
+
     <input type="image" src="https://i.imgur.com/BFYaz6O.png" style="width: 375px;height: 10px">
 
 
@@ -148,7 +151,7 @@
 
 
     <SCRIPT>
-    var canvas = document.getElementById("cvs");
+    /*var canvas = document.getElementById("cvs");
     canvas.addEventListener('keydown', doKeyDown, true);
     ctx = canvas.getContext("2d");
     var whatshape;
@@ -181,7 +184,7 @@
     sidenum.innerHTML = 100;
 
 
-    /*function draw_triangle()
+    function draw_triangle()
     {
         whatshape = 1;
         ctx.beginPath();
@@ -189,7 +192,7 @@
         ctx.lineTo(20,200);
         ctx.lineTo(130,200);
         ctx.fill();
-    }*/
+    }
     function draw_rectangle()
     {
         x = 100;
@@ -249,7 +252,7 @@
         ctx.bezierCurveTo(85, 25, 75, 37, 75, 40);
         ctx.closePath();
         ctx.fill();
-    }*/
+    }
     function draw_squre()
     {
         whatshape = 5;
@@ -286,7 +289,7 @@
         ctx.lineTo(108, 0);
         ctx.closePath();
         ctx.fill();
-    }*/
+    }
     var x = 100;
     var y = 100;
     var drawcheck = document.getElementById("checkdraw");
@@ -541,10 +544,11 @@
           ctx.fillRect(x,y,new_squrewidth, new_squrewidth);
         }
         
-    }
+    }/*
     
   </SCRIPT>
-      
+  
+  <script type="text/javascript" src="colorpicker.js"></script>
 
   </body>
 
