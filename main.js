@@ -5,7 +5,7 @@ lastx = 200 , lasty = 200;
 var cvs 
 var mouse_down = 0;
 var imgData;
-
+var feat = 1;
 
 var previous_and_next_count = 0;
 var previous_and_next = new Array();
@@ -31,6 +31,25 @@ function showpensize()
   }
 }
 
+function feat_n() {
+  feat = 1;
+}
+
+function feat_H() {
+  feat = 2;
+}
+
+function feat_V() {
+  feat = 3;
+}
+
+function feat_C() {
+  feat = 4;
+}
+
+function feat_S() {
+  feat = 5;
+}
 
 
 function reset()
@@ -75,8 +94,25 @@ function mouseMove(event) {
   if(mouse_down == 1)
   {
     var mousePos = getMousePos(cvs, event);
+    if(feat == 1)
+    {
       ctx.lineTo(mousePos.x, mousePos.y);
       ctx.stroke();
+    }
+
+    if(feat == 4 || feat == 5 || feat == 6)
+    {
+      if(feat == 4)
+        ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
+      else if(feat == 5)
+        ctx.rect(mousePos.x,mousePos.y,50,50);
+      // ctx.lineTo(mousePos.x, mousePos.y);
+      ctx.fill();
+      ctx.beginPath();
+
+    }
+    
+     
   }
 }
       
@@ -84,7 +120,22 @@ function down(event)
 {
   mouse_down = 1;
   var mousePos = getMousePos(cvs, event);
-  ctx.moveTo(mousePos.x,mousePos.y);
+  if(feat != 4 &&  feat != 5)
+    ctx.moveTo(mousePos.x,mousePos.y);
+  else if( feat == 4)
+  {
+    ctx.beginPath();
+    ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
+    // ctx.fillStyle = 
+    ctx.fill();
+  }
+  else if( feat == 5)
+  {
+    ctx.beginPath();
+    ctx.rect(mousePos.x,mousePos.y,50,50);
+    // ctx.fillStyle = 
+    ctx.fill();
+  }
 }
 
 function up(event)
@@ -178,6 +229,7 @@ function red(event)
 { 
   ctx.beginPath();
   ctx.strokeStyle = "#FF0000";
+  ctx.fillStyle = "#FF0000";
   ctx.stroke();
   // canvas.freeDrawingBrush.color
 }
@@ -186,6 +238,7 @@ function blue(event)
 {
   ctx.beginPath();
   ctx.strokeStyle = " #0000FF";
+  ctx.fillStyle = " #0000FF";
   ctx.stroke();
 }
 
@@ -193,6 +246,7 @@ function green(event)
 {
   ctx.beginPath();
   ctx.strokeStyle = " #008000";
+  ctx.fillStyle = " #008000";
   ctx.stroke();
 }
 
@@ -200,6 +254,7 @@ function purple(event)
 {
   ctx.beginPath();
   ctx.strokeStyle = " #8B00FF";
+  ctx.fillStyle = " #8B00FF";
   ctx.stroke();
 }
 
@@ -207,6 +262,7 @@ function yellow(event)
 {
   ctx.beginPath();
   ctx.strokeStyle = "#FFFF00";
+  ctx.fillStyle = "#FFFF00";
   ctx.stroke();
 }
 
@@ -214,6 +270,7 @@ function orange(event)
 {
   ctx.beginPath();
   ctx.strokeStyle = "#FFA500";
+  ctx.fillStyle = "#FFA500";
   ctx.stroke();
 }
 
@@ -221,6 +278,7 @@ function pink(event)
 {
   ctx.beginPath();
   ctx.strokeStyle = " #FFC0CB";
+  ctx.fillStyle = " #FFC0CB";
   ctx.stroke();
 }
 
@@ -228,6 +286,7 @@ function black(event)
 {
   ctx.beginPath();
   ctx.strokeStyle = " #000000";
+  ctx.fillStyle = " #000000";
   ctx.stroke();
 }
 
@@ -235,6 +294,7 @@ function white(event)
 {
   ctx.beginPath();
   ctx.strokeStyle = " #FFFFFF";
+  ctx.fillStyle = " #FFFFFF";
   ctx.stroke();
 }
 
@@ -307,6 +367,7 @@ function displaychange(event)
         blue = document.getElementById("colorpickerblue").value;
   
     ctx.strokeStyle = "rgb(" + red + ", " + green + ", " + blue +")";
+    ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
     ctx.stroke();
 }
 
