@@ -4,13 +4,28 @@ body
 	color:#FFFFFF;
 }
 
-canvas
+#cvs
 {
 	border: 10px solid #000000;
   	background-color:#FFFFFF;       
   	float: left;
   	cursor:url(https://i.imgur.com/kxk55ZQ.png), pointer;
 }
+
+#color-picker {
+  border: 3px solid rgba(15, 15, 15, 0.2);
+}
+
+
+
+.selected {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 2px solid rgba(15, 15, 15, 0.2);
+}
+
+
 
 .header
 {
@@ -509,4 +524,32 @@ input[type="range"]
 {
   
   	display:inline;
+}
+
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#color-picker {
+  border: 3px solid rgba(15, 15, 15, 0.2);
+}
+
+.info {
+  width: 12em;
+  display: flex;
+  margin-left: 4em;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.selected {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 2px solid rgba(15, 15, 15, 0.2);
 }
