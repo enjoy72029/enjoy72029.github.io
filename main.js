@@ -63,7 +63,11 @@ function reset()
   previous_and_next.splice(0,previous_and_next.length);
   var imgtemp = ctx.getImageData(0, 0, canvas.width, canvas.height);
   previous_and_next.push(imgtemp);
-
+  
+  ctx.beginPath();
+  ctx.fillStyle = "#FFFFFF";
+  ctx.rect(0,0,820,600);
+  ctx.fill();
 
 }
 
@@ -78,6 +82,10 @@ function setting()
   previous_and_next.push(imgtemp);
   //alert("test");
   //previous_and_next_count++;
+  ctx.beginPath();
+  ctx.fillStyle = "#FFFFFF";
+  ctx.rect(0,0,820,600);
+  ctx.fill();
 }
 
 
@@ -100,14 +108,14 @@ function mouseMove(event) {
       ctx.stroke();
     }
 
-    if(feat == 4 || feat == 5 || feat == 6)
+    if(feat == 4 || feat == 5)
     {
       if(feat == 4)
         ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
       else if(feat == 5)
         ctx.rect(mousePos.x,mousePos.y,50,50);
       // ctx.lineTo(mousePos.x, mousePos.y);
-      ctx.fill();
+      ctx.stroke();
       ctx.beginPath();
 
     }
@@ -126,15 +134,13 @@ function down(event)
   {
     ctx.beginPath();
     ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
-    // ctx.fillStyle = 
-    ctx.fill();
+    ctx.stroke();
   }
   else if( feat == 5)
   {
     ctx.beginPath();
     ctx.rect(mousePos.x,mousePos.y,50,50);
-    // ctx.fillStyle = 
-    ctx.fill();
+    ctx.stroke();
   }
 }
 
