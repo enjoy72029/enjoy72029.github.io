@@ -175,9 +175,9 @@ function reset()
   //ctx.beginPath();
   ctx.clearRect(0,0,cvs.width,cvs.height);  
   //ctx.stroke();
-  previous_and_next_count = -1;
+  previous_and_next_count = 0;
   previous_and_next.splice(0,previous_and_next.length);
-  var imgtemp = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  var imgtemp = ctx.getImageData(0, 0, cvs.width, cvs.height);
   previous_and_next.push(imgtemp);
   
   ctx.beginPath();
