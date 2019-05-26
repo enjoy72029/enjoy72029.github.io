@@ -36,31 +36,39 @@ function showpensize()
 }
 
 function feat_L() {
-	feat = 1;
+  feat = 1;
 }
 
 function feat_C() {
-	feat = 2;
+  feat = 2;
 }
 
 function feat_S() {
-	feat = 3;
+  feat = 3;
 }
 
 
 function feat_N() {
-	status = 1;
+  status = 1;
+  var setpieacebar = document.getElementById("setpieace");
+  setpieacebar.style.display = "none";
+  var setpieacebartext = document.getElementById("setpieacetext");
+  setpieacebartext.style.display = "none";
 }
 
 function feat_F() {
-	status = 2;
+  status = 2;
+  var setpieacebar = document.getElementById("setpieace");
+  setpieacebar.style.display = "block";
+  var setpieacebartext = document.getElementById("setpieacetext");
+  setpieacebartext.style.display = "block";
 }
 
 function feat_R() {
   if(colorful == 1)
-  	colorful = 0;
+    colorful = 0;
   else if(colorful == 0)
-  	colorful = 1;
+    colorful = 1;
 }
 /*var pieace;
 
@@ -71,8 +79,19 @@ function setpieace()
 
 }*/
 
+var pieace;
+
+function setpieace()
+{
+  //alert("hahahaha");
+  pieace = document.getElementById("setpieace").value;
+  var setpieacetext = document.getElementById("setpieacetext");
+  setpieacetext.innerHTML = "Piece is = " + pieace;
+
+}
+
 function drawFn(op) {
-	pieace = 6;
+  //pieace = 6;
   //var pieace = document.getElementById("pieace");
    var deg = Math.floor(360 / pieace);
    for (var i = 0, l = 360; i < l; i += deg) {
@@ -86,16 +105,16 @@ function draw(option, _ctx) {
   _ctx = _ctx || ctx;
   if(feat == 1)
   {
-  	_ctx.beginPath();
-	  _ctx.moveTo(option.bx - _ctx.canvas.width / 2, option.by - _ctx.canvas.height / 2);
-	  _ctx.lineTo(option.ex - _ctx.canvas.width / 2, option.ey - _ctx.canvas.height / 2);
-	  if(colorful == 1)
-			{
-				ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-	      hue++;
-	      if(hue >= 300) hue = 0;
-			}
-	  _ctx.stroke();
+    _ctx.beginPath();
+    _ctx.moveTo(option.bx - _ctx.canvas.width / 2, option.by - _ctx.canvas.height / 2);
+    _ctx.lineTo(option.ex - _ctx.canvas.width / 2, option.ey - _ctx.canvas.height / 2);
+    if(colorful == 1)
+      {
+        ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+        hue++;
+        if(hue >= 300) hue = 0;
+      }
+    _ctx.stroke();
   }
   
 
@@ -104,27 +123,27 @@ function draw(option, _ctx) {
    _ctx.beginPath();
    _ctx.arc(option.ex - _ctx.canvas.width / 2, option.ey - _ctx.canvas.height / 2,50,0,2*Math.PI);
    if(colorful == 1)
-			{
-				ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-	      hue++;
-	      if(hue >= 300) hue = 0;
-			}
+      {
+        ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+        hue++;
+        if(hue >= 300) hue = 0;
+      }
   _ctx.stroke();
   }
   
 
-	 if(feat == 3)
-	 {
-	 	 _ctx.beginPath();
-	   _ctx.rect(option.ex - _ctx.canvas.width / 2, option.ey - _ctx.canvas.height / 2,50,50);
-	   if(colorful == 1)
-			{
-				ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-	      hue++;
-	      if(hue >= 300) hue = 0;
-			}
-	   _ctx.stroke();
-	 }
+   if(feat == 3)
+   {
+     _ctx.beginPath();
+     _ctx.rect(option.ex - _ctx.canvas.width / 2, option.ey - _ctx.canvas.height / 2,50,50);
+     if(colorful == 1)
+      {
+        ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+        hue++;
+        if(hue >= 300) hue = 0;
+      }
+     _ctx.stroke();
+   }
    if(feat == 4)
    {
 
@@ -137,7 +156,7 @@ function draw(option, _ctx) {
     _ctx.stroke();
     //ctx.beginPath();
    }
-	
+  
 }
 
 function drawRotate(deg, fn, _ctx) {
@@ -196,97 +215,97 @@ function getMousePos(cvs, event) {
 }
   
 function mouseMove(event) {
-	var mousePos = getMousePos(cvs, event);
-	if(mouse_down == 1 && status ==1)
-	{
-		if(feat == 1)
-		{
-			ctx.lineTo(mousePos.x, mousePos.y);
-			if(colorful == 1)
-			{
-				ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-	      hue++;
-	      if(hue >= 300) hue = 0;
-			}
-			ctx.stroke();
+  var mousePos = getMousePos(cvs, event);
+  if(mouse_down == 1 && status ==1)
+  {
+    if(feat == 1)
+    {
+      ctx.lineTo(mousePos.x, mousePos.y);
+      if(colorful == 1)
+      {
+        ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+        hue++;
+        if(hue >= 300) hue = 0;
+      }
+      ctx.stroke();
 
-			if(colorful == 1)
-			{
-				ctx.beginPath();
-     		ctx.moveTo(mousePos.x, mousePos.y);
-			}
-			var normal = document.getElementById("normal");
-			normal.play();
-		}
+      if(colorful == 1)
+      {
+        ctx.beginPath();
+        ctx.moveTo(mousePos.x, mousePos.y);
+      }
+      var normal = document.getElementById("normal");
+      normal.play();
+    }
 
 
-		else if(feat == 2)
-		{
-			ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
-			var bubble = document.getElementById("bubble");
-			bubble.play();
-			if(colorful == 1)
-			{
-				ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-	      hue++;
-	      if(hue >= 300) hue = 0;
-			}
-			ctx.stroke();
-			ctx.beginPath();
-		}
+    else if(feat == 2)
+    {
+      ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
+      var bubble = document.getElementById("bubble");
+      bubble.play();
+      if(colorful == 1)
+      {
+        ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+        hue++;
+        if(hue >= 300) hue = 0;
+      }
+      ctx.stroke();
+      ctx.beginPath();
+    }
 
-		else if(feat == 3)
-		{
-			ctx.rect(mousePos.x,mousePos.y,50,50);
-			var rect = document.getElementById("rect");
-			rect.play();
-			if(colorful == 1)
-			{
-				ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-	      hue++;
-	      if(hue >= 300) hue = 0;
-			}
-			ctx.stroke();
-			ctx.beginPath();
-		}
+    else if(feat == 3)
+    {
+      ctx.rect(mousePos.x,mousePos.y,50,50);
+      var rect = document.getElementById("rect");
+      rect.play();
+      if(colorful == 1)
+      {
+        ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+        hue++;
+        if(hue >= 300) hue = 0;
+      }
+      ctx.stroke();
+      ctx.beginPath();
+    }
  
-	}
+  }
 
-	if(mouse_down == 1 && status ==2)
-	{
-		if(feat == 1)
-		{
-			op.bx = op.ex;
+  if(mouse_down == 1 && status ==2)
+  {
+    if(feat == 1)
+    {
+      op.bx = op.ex;
       op.by = op.ey;
       op.ex = mousePos.x;
       op.ey = mousePos.y;
       drawFn(op);
-			var normal = document.getElementById("normal");
-			normal.play();
-		}
+      var normal = document.getElementById("normal");
+      normal.play();
+    }
 
-		else if(feat == 2)
-		{
-			// ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
-			op.bx = op.ex;
+    else if(feat == 2)
+    {
+      // ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
+      op.bx = op.ex;
       op.by = op.ey;
       op.ex = mousePos.x;
       op.ey = mousePos.y;
       drawFn(op);
-			var bubble = document.getElementById("bubble");
-			bubble.play();
-		}
-		else if(feat == 3)
-		{
-			// ctx.rect(mousePos.x,mousePos.y,50,50);
-			op.bx = op.ex;
+      var bubble = document.getElementById("bubble");
+      bubble.play();
+    }
+    else if(feat == 3)
+    {
+      // ctx.rect(mousePos.x,mousePos.y,50,50);
+      op.bx = op.ex;
       op.by = op.ey;
       op.ex = mousePos.x;
       op.ey = mousePos.y;
       drawFn(op);
-			var rect = document.getElementById("rect");
-			rect.play();
-		}
+      var rect = document.getElementById("rect");
+      rect.play();
+    }
     else if(feat == 4)
     {
       op.bx = op.ex;
@@ -296,30 +315,30 @@ function mouseMove(event) {
       drawFn(op);
 
     }
-	}
+  }
 }
 
-			
+      
 function down(event)
 {
-	mouse_down = 1;
-	var mousePos = getMousePos(cvs, event);
-	op.ex = op.bx = mousePos.x;
+  mouse_down = 1;
+  var mousePos = getMousePos(cvs, event);
+  op.ex = op.bx = mousePos.x;
   op.ey = op.by = mousePos.y;
-	if(feat == 1)
-		ctx.moveTo(mousePos.x,mousePos.y);	
-	else if( feat == 2)
-	{
-		ctx.beginPath();
-		ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
-		ctx.stroke();
-	}
-	else if( feat == 3)
-	{
-		ctx.beginPath();
-		ctx.rect(mousePos.x,mousePos.y,50,50);
-		ctx.stroke();
-	}
+  if(feat == 1)
+    ctx.moveTo(mousePos.x,mousePos.y);  
+  else if( feat == 2)
+  {
+    ctx.beginPath();
+    ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
+    ctx.stroke();
+  }
+  else if( feat == 3)
+  {
+    ctx.beginPath();
+    ctx.rect(mousePos.x,mousePos.y,50,50);
+    ctx.stroke();
+  }
   else if(feat == 4)
   {
     ctx.beginPath();
