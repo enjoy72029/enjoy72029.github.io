@@ -630,3 +630,4 @@ function setsize()
   ctx.rect(0,0,width.value,height.value);
   ctx.fill();
 }
+
