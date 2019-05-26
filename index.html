@@ -24,13 +24,6 @@
       <labe style="color:#e3e3e3;">Height：<input type="text" id="setheight"/></label>
       <input type="button" id="setsize" value="Set Canvas Size" onclick="setsize()"/>
 
-      
-
-      <form name="dowhatForm"> 
-        <input type="checkbox" id="checkdraw" name="dowhatGroup" value="1" checked="" onclick="dowhat(this)">Draw Now
-        <input type="checkbox" id="checkshape" name="dowhatGroup" onclick="dowhat(this)">Shape Now
-      </form>
-
     </div>
 
 
@@ -121,34 +114,47 @@
 
 
     <form>
-      <label for="pen_line">pen_line</label>
+      
       <input type="radio" name="sex" id="pen_line" checked  onclick="feat_L()" />
+      <label for="pen_line">Pen_line</label>
       <br/>
-      <label for="pen_circle">pen_circle</label>
+      
       <input type="radio" name="sex" id="pen_circle" onclick="feat_C()" />
+      <label for="pen_circle">Pen_circle</label>
       <br /> 
-      <label for="pen_squart">pen_squart</label>
+
+      
       <input type="radio" name="sex" id="pen_squart" onclick="feat_S()" />
+      <label for="pen_squart">Pen_squart</label>
       <br /> 
+
     </form>
+
+      <input type="image" src="https://i.imgur.com/BFYaz6O.png" style="width: 375px;height: 10px">
 
     <form>
-      <label for="rainbow">rainbow</label>
       <input type="radio" name="sex" id="rainbow"  onclick="feat_R()" />
+      <label for="rainbow">Rainbow</label>
       <br />
-    </form>
+   </form>
+
+      <input type="image" src="https://i.imgur.com/BFYaz6O.png" style="width: 375px;height: 10px">
 
     <form> 
-      <label for="normal">normal</label>
+      
       <input type="radio" name="sex" id="normal" onclick="feat_N()" checked/>
+      <label for="normal">Normal</label>
       <br/>
-      <label for="flip">flip</label>
+
+      
       <input type="radio" name="sex" id="flip"  onclick="feat_F()" />
+      <label for="flip">Flip</label>
       <br />
-      <input type="text" id="pieace">
-      <input type="button" value="Set Pieace" id="setpieace" onclick="setpieace()">
-         
     </form>
+      <!--<input type="text" id="pieace">-->
+      <div id="setpieacetext" style="display: none;">Piece is = 1</div>
+      <input type="range" min="1" max="300" value="1" id="setpieace" oninput="setpieace()" onchange="setpieace()" style="display: none;">
+
 
   
   <script type="text/javascript" src="colorpicker.js"></script>
