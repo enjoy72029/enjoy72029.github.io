@@ -180,10 +180,10 @@ function reset()
   var imgtemp = ctx.getImageData(0, 0, canvas.width, canvas.height);
   previous_and_next.push(imgtemp);
   
-  ctx.beginPath();
+  /*ctx.beginPath();
   ctx.fillStyle = "#FFFFFF";
   ctx.rect(0,0,cvs.width,cvs.height);
-  ctx.fill();
+  ctx.fill();*/
 
 }
 
