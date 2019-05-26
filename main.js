@@ -332,7 +332,7 @@ function up(event)
   ctx.beginPath();
   mouse_down = 0;
   
-  imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  imgData = ctx.getImageData(0, 0, cvs.width, cvs.height);
   previous_and_next.push(imgData);
   previous_and_next_count++;
   //alert(previous_and_next.length);
