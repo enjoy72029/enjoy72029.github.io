@@ -7,6 +7,7 @@ var mouse_down = 0;
 var imgData;
 var feat = 1;
 var status = 1;
+var hue = 0;
 
 var previous_and_next_count = 0;
 var previous_and_next = new Array();
@@ -54,8 +55,21 @@ function feat_F() {
 	status = 2;
 }
 
+function feat_R() {
+  feat = 4;
+}
+var pieace;
+
+function setpieace()
+{
+  alert("hahahaha");
+  pieace = document.getElementById("pieace").value;
+
+}
+
 function drawFn(op) {
-	pieace = 6;
+	//pieace = 6;
+  //var pieace = document.getElementById("pieace");
    var deg = Math.floor(360 / pieace);
    for (var i = 0, l = 360; i < l; i += deg) {
    drawRotate(i / 180 * Math.PI, function(ctx) {
@@ -86,9 +100,21 @@ function draw(option, _ctx) {
 	 if(feat == 3)
 	 {
 	 	 _ctx.beginPath();
-	  _ctx.rect(option.ex - _ctx.canvas.width / 2, option.ey - _ctx.canvas.height / 2,50,50);
-	  _ctx.stroke();
+	   _ctx.rect(option.ex - _ctx.canvas.width / 2, option.ey - _ctx.canvas.height / 2,50,50);
+	   _ctx.stroke();
 	 }
+   if(feat == 4)
+   {
+
+    _ctx.beginPath();
+    _ctx.moveTo(option.bx - _ctx.canvas.width / 2, option.by - _ctx.canvas.height / 2);
+    _ctx.lineTo(option.ex - _ctx.canvas.width / 2, option.ey - _ctx.canvas.height / 2);
+    _ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+    hue++;
+    if(hue >= 360) hue = 0;
+    _ctx.stroke();
+    //ctx.beginPath();
+   }
 	
 }
 
@@ -177,6 +203,17 @@ function mouseMove(event) {
 			ctx.stroke();
 			ctx.beginPath();
 		}
+    else if(feat == 4)
+    {
+      ctx.lineTo(mousePos.x, mousePos.y);
+      ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+      hue++;
+      if(hue >= 300) hue = 0;
+
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(mousePos.x, mousePos.y);
+    }
 	}
 
 	if(mouse_down == 1 && status ==2)
@@ -214,6 +251,15 @@ function mouseMove(event) {
 			var rect = document.getElementById("rect");
 			rect.play();
 		}
+    else if(feat == 4)
+    {
+      op.bx = op.ex;
+      op.by = op.ey;
+      op.ex = mousePos.x;
+      op.ey = mousePos.y;
+      drawFn(op);
+
+    }
 	}
 }
 
@@ -238,6 +284,11 @@ function down(event)
 		ctx.rect(mousePos.x,mousePos.y,50,50);
 		ctx.stroke();
 	}
+  else if(feat == 4)
+  {
+    ctx.beginPath();
+    ctx.stroke();
+  }
 }
 
 function up(event)
