@@ -58,17 +58,17 @@ function feat_F() {
 function feat_R() {
   feat = 4;
 }
-var pieace;
+//var pieace;
 
-function setpieace()
+/*function setpieace()
 {
   alert("hahahaha");
   pieace = document.getElementById("pieace").value;
 
-}
+}*/
 
 function drawFn(op) {
-	//pieace = 6;
+	pieace = 6;
   //var pieace = document.getElementById("pieace");
    var deg = Math.floor(360 / pieace);
    for (var i = 0, l = 360; i < l; i += deg) {
