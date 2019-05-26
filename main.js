@@ -58,9 +58,9 @@ function feat_F() {
 function feat_R() {
   feat = 4;
 }
-//var pieace;
+/*var pieace;
 
-/*function setpieace()
+function setpieace()
 {
   alert("hahahaha");
   pieace = document.getElementById("pieace").value;
