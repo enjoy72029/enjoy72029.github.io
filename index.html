@@ -37,7 +37,7 @@
     <div class="Sidebar">
         <canvas width="820px" height="600px" id="cvs" onmouseup="up(event)" onmousedown="down(event)" onmousemove="mouseMove(event)" tabindex="0"></canvas>
     </div>
-    <audio id = "normal">
+    <audio id = "normal_">
         <source  src="normal.mp3" type="audio/mpeg">
     </audio>
     <audio id = "bubble">
@@ -140,14 +140,8 @@
 
 
     <form>
-      <label for="normal">Normal</label>
-      <input type="radio" name="sex" id="normal" checked  onclick="feat_n()" />
-      <br/>
-      <label for="Hsymmetry">Horizontal symmetry</label>
-      <input type="radio" name="sex" id="Hsymmetry"  onclick="feat_H()" />
-      <br />
-      <label for="Vsymmetry">Vertical symmetry</label>
-      <input type="radio" name="sex" id="Vsymmetry" onclick="feat_V()" />
+      <label for="pen_line">pen_line</label>
+      <input type="radio" name="sex" id="pen_line" checked  onclick="feat_L()" />
       <br/>
       <label for="pen_circle">pen_circle</label>
       <input type="radio" name="sex" id="pen_circle" onclick="feat_C()" />
@@ -156,6 +150,16 @@
       <input type="radio" name="sex" id="pen_squart" onclick="feat_S()" />
       <br /> 
     </form>
+
+    <form> 
+      <label for="normal">normal</label>
+      <input type="radio" name="sex" id="normal" onclick="feat_N()" checked/>
+      <br/>
+      <label for="flip">flip</label>
+      <input type="radio" name="sex" id="flip"  onclick="feat_F()" />
+      <br />   
+    </form>
+
 
 
 

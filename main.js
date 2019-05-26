@@ -6,9 +6,11 @@ var cvs
 var mouse_down = 0;
 var imgData;
 var feat = 1;
+var status = 1;
 
 var previous_and_next_count = 0;
 var previous_and_next = new Array();
+var op = {};
 
 var p = document.getElementById("pensize");
 p.addEventListener("input", function() {
@@ -31,26 +33,73 @@ function showpensize()
   }
 }
 
-function feat_n() {
-  feat = 1;
-}
-
-function feat_H() {
-  feat = 2;
-}
-
-function feat_V() {
-  feat = 3;
+function feat_L() {
+	feat = 1;
 }
 
 function feat_C() {
-  feat = 4;
+	feat = 2;
 }
 
 function feat_S() {
-  feat = 5;
+	feat = 3;
 }
 
+
+function feat_N() {
+	status = 1;
+}
+
+function feat_F() {
+	status = 2;
+}
+
+function drawFn(op) {
+	pieace = 6;
+   var deg = Math.floor(360 / pieace);
+   for (var i = 0, l = 360; i < l; i += deg) {
+   drawRotate(i / 180 * Math.PI, function(ctx) {
+   draw(op);
+   });
+   }
+ }
+
+function draw(option, _ctx) {
+  _ctx = _ctx || ctx;
+  if(feat == 1)
+  {
+  	_ctx.beginPath();
+	  _ctx.moveTo(option.bx - _ctx.canvas.width / 2, option.by - _ctx.canvas.height / 2);
+	  _ctx.lineTo(option.ex - _ctx.canvas.width / 2, option.ey - _ctx.canvas.height / 2);
+	  _ctx.stroke();
+  }
+  
+
+  if(feat == 2)
+  {
+   _ctx.beginPath();
+   _ctx.arc(option.ex - _ctx.canvas.width / 2, option.ey - _ctx.canvas.height / 2,50,0,2*Math.PI);
+  _ctx.stroke();
+  }
+  
+
+	 if(feat == 3)
+	 {
+	 	 _ctx.beginPath();
+	  _ctx.rect(option.ex - _ctx.canvas.width / 2, option.ey - _ctx.canvas.height / 2,50,50);
+	  _ctx.stroke();
+	 }
+	
+}
+
+function drawRotate(deg, fn, _ctx) {
+  _ctx = _ctx || ctx;
+  _ctx.save();
+  _ctx.translate(_ctx.canvas.width / 2, _ctx.canvas.height / 2);
+  _ctx.rotate(deg);
+  fn && fn(_ctx);
+  _ctx.restore();
+}
 
 function reset()
 {
@@ -66,7 +115,7 @@ function reset()
   
   ctx.beginPath();
   ctx.fillStyle = "#FFFFFF";
-  ctx.rect(0,0,820,600);
+  ctx.rect(0,0,cvs.width,cvs.height);
   ctx.fill();
 
 }
@@ -84,7 +133,7 @@ function setting()
   //previous_and_next_count++;
   ctx.beginPath();
   ctx.fillStyle = "#FFFFFF";
-  ctx.rect(0,0,820,600);
+  ctx.rect(0,0,canvas1.width, canvas1.height);
   ctx.fill();
 }
 
@@ -99,59 +148,96 @@ function getMousePos(cvs, event) {
 }
   
 function mouseMove(event) {
-  if(mouse_down == 1)
-  {
-    var mousePos = getMousePos(cvs, event);
-    if(feat == 1)
-    {
-      ctx.lineTo(mousePos.x, mousePos.y);
-      ctx.stroke();
-      var normal = document.getElementById("normal");
-      normal.play();
-    }
-
-    if(feat == 4 || feat == 5)
-    {
-      if(feat == 4)
-      {
-        ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
-        var bubble = document.getElementById("bubble");
-        bubble.play();
-      }
-      else if(feat == 5)
-      {
-        ctx.rect(mousePos.x,mousePos.y,50,50);
-        var rect = document.getElementById("rect");
-        rect.play();
-      }
-      ctx.stroke();
-      ctx.beginPath();
-    }
+	var mousePos = getMousePos(cvs, event);
+	if(mouse_down == 1 && status ==1)
+	{
+		if(feat == 1)
+		{
+			ctx.lineTo(mousePos.x, mousePos.y);
+			ctx.stroke();
+			var normal = document.getElementById("normal");
+			normal.play();
+		}
 
 
-    
-     
-  }
+		else if(feat == 2)
+		{
+			ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
+			var bubble = document.getElementById("bubble");
+			bubble.play();
+			ctx.stroke();
+			ctx.beginPath();
+		}
+
+		else if(feat == 3)
+		{
+			ctx.rect(mousePos.x,mousePos.y,50,50);
+			var rect = document.getElementById("rect");
+			rect.play();
+			ctx.stroke();
+			ctx.beginPath();
+		}
+	}
+
+	if(mouse_down == 1 && status ==2)
+	{
+		if(feat == 1)
+		{
+			op.bx = op.ex;
+      op.by = op.ey;
+      op.ex = mousePos.x;
+      op.ey = mousePos.y;
+      drawFn(op);
+			var normal = document.getElementById("normal");
+			normal.play();
+		}
+
+		else if(feat == 2)
+		{
+			// ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
+			op.bx = op.ex;
+      op.by = op.ey;
+      op.ex = mousePos.x;
+      op.ey = mousePos.y;
+      drawFn(op);
+			var bubble = document.getElementById("bubble");
+			bubble.play();
+		}
+		else if(feat == 3)
+		{
+			// ctx.rect(mousePos.x,mousePos.y,50,50);
+			op.bx = op.ex;
+      op.by = op.ey;
+      op.ex = mousePos.x;
+      op.ey = mousePos.y;
+      drawFn(op);
+			var rect = document.getElementById("rect");
+			rect.play();
+		}
+	}
 }
-      
+
+			
 function down(event)
 {
-  mouse_down = 1;
-  var mousePos = getMousePos(cvs, event);
-  if(feat != 4 &&  feat != 5)
-    ctx.moveTo(mousePos.x,mousePos.y);
-  else if( feat == 4)
-  {
-    ctx.beginPath();
-    ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
-    ctx.stroke();
-  }
-  else if( feat == 5)
-  {
-    ctx.beginPath();
-    ctx.rect(mousePos.x,mousePos.y,50,50);
-    ctx.stroke();
-  }
+	mouse_down = 1;
+	var mousePos = getMousePos(cvs, event);
+	op.ex = op.bx = mousePos.x;
+  op.ey = op.by = mousePos.y;
+	if(feat == 1)
+		ctx.moveTo(mousePos.x,mousePos.y);	
+	else if( feat == 2)
+	{
+		ctx.beginPath();
+		ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
+		ctx.stroke();
+	}
+	else if( feat == 3)
+	{
+		ctx.beginPath();
+		ctx.rect(mousePos.x,mousePos.y,50,50);
+		ctx.stroke();
+	}
 }
 
 function up(event)
@@ -398,26 +484,6 @@ function changepensize(event)
 
 
 
-function symmetry() {
-  
-  var checkBox = document.getElementById("symmetry");
-  var text = document.getElementById("testword");
-  if (checkBox.checked == true){
-    for(var i = 0 ; i < 2 ; i++)
-      {
-          ctx.save();
-          ctx.translate(canvas.width()/2, canvas.height()/2);
-          ctx.rotate((Math.PI/180)*(360/2*i));
-          ctx.scale(-1, 1);
-          var img = new Image();
-          img.src = canvas.toDataURL("image/png");
-          ctx.drawImage(img, -canvas.width()/2, -canvas.height()/2);
-          ctx.restore();
-     }
-  } else {
-     text.style.display = "none";
-  }
-}
 
 function downloadimg()
 {
@@ -452,4 +518,9 @@ function setsize()
           alert("寬度及高度太小，寬度應大於200且高度應大於300！");
       }
   }
+
+  ctx.beginPath();
+  ctx.fillStyle = "#FFFFFF";
+  ctx.rect(0,0,width.value,height.value);
+  ctx.fill();
 }
