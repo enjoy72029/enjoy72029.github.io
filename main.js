@@ -7,6 +7,7 @@ var mouse_down = 0;
 var imgData;
 var feat = 1;
 var status = 1;
+var colorful = 0 ;
 var hue = 0;
 
 var previous_and_next_count = 0;
@@ -56,7 +57,10 @@ function feat_F() {
 }
 
 function feat_R() {
-  feat = 4;
+  if(colorful == 1)
+  	colorful = 0;
+  else if(colorful == 0)
+  	colorful = 1;
 }
 /*var pieace;
 
@@ -85,6 +89,12 @@ function draw(option, _ctx) {
   	_ctx.beginPath();
 	  _ctx.moveTo(option.bx - _ctx.canvas.width / 2, option.by - _ctx.canvas.height / 2);
 	  _ctx.lineTo(option.ex - _ctx.canvas.width / 2, option.ey - _ctx.canvas.height / 2);
+	  if(colorful == 1)
+			{
+				ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+	      hue++;
+	      if(hue >= 300) hue = 0;
+			}
 	  _ctx.stroke();
   }
   
@@ -93,6 +103,12 @@ function draw(option, _ctx) {
   {
    _ctx.beginPath();
    _ctx.arc(option.ex - _ctx.canvas.width / 2, option.ey - _ctx.canvas.height / 2,50,0,2*Math.PI);
+   if(colorful == 1)
+			{
+				ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+	      hue++;
+	      if(hue >= 300) hue = 0;
+			}
   _ctx.stroke();
   }
   
@@ -101,6 +117,12 @@ function draw(option, _ctx) {
 	 {
 	 	 _ctx.beginPath();
 	   _ctx.rect(option.ex - _ctx.canvas.width / 2, option.ey - _ctx.canvas.height / 2,50,50);
+	   if(colorful == 1)
+			{
+				ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+	      hue++;
+	      if(hue >= 300) hue = 0;
+			}
 	   _ctx.stroke();
 	 }
    if(feat == 4)
@@ -180,7 +202,19 @@ function mouseMove(event) {
 		if(feat == 1)
 		{
 			ctx.lineTo(mousePos.x, mousePos.y);
+			if(colorful == 1)
+			{
+				ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+	      hue++;
+	      if(hue >= 300) hue = 0;
+			}
 			ctx.stroke();
+
+			if(colorful == 1)
+			{
+				ctx.beginPath();
+     		ctx.moveTo(mousePos.x, mousePos.y);
+			}
 			var normal = document.getElementById("normal");
 			normal.play();
 		}
@@ -191,6 +225,12 @@ function mouseMove(event) {
 			ctx.arc(mousePos.x,mousePos.y,50,0,2*Math.PI);
 			var bubble = document.getElementById("bubble");
 			bubble.play();
+			if(colorful == 1)
+			{
+				ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+	      hue++;
+	      if(hue >= 300) hue = 0;
+			}
 			ctx.stroke();
 			ctx.beginPath();
 		}
@@ -200,20 +240,16 @@ function mouseMove(event) {
 			ctx.rect(mousePos.x,mousePos.y,50,50);
 			var rect = document.getElementById("rect");
 			rect.play();
+			if(colorful == 1)
+			{
+				ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+	      hue++;
+	      if(hue >= 300) hue = 0;
+			}
 			ctx.stroke();
 			ctx.beginPath();
 		}
-    else if(feat == 4)
-    {
-      ctx.lineTo(mousePos.x, mousePos.y);
-      ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-      hue++;
-      if(hue >= 300) hue = 0;
-
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(mousePos.x, mousePos.y);
-    }
+ 
 	}
 
 	if(mouse_down == 1 && status ==2)
