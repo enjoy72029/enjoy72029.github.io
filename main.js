@@ -576,7 +576,7 @@ function downloadimg()
 {
   var link = document.getElementById("download");
   link.download = "image.png";
-  link.href = canvas.toDataURL("image/png");
+  link.href = cvs.toDataURL("image/png");
   link.click();
 }
 
